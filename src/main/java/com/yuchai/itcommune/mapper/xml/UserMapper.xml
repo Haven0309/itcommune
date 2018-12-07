@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yuchai.itcommune.mapper.UserMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.yuchai.itcommune.entity.User">
+        <id column="id" property="id" />
+        <result column="user_code" property="userCode" />
+        <result column="user_name" property="userName" />
+        <result column="display_name" property="displayName" />
+        <result column="password" property="password" />
+        <result column="phone" property="phone" />
+        <result column="mail" property="mail" />
+        <result column="education" property="education" />
+        <result column="specialty" property="specialty" />
+        <result column="company" property="company" />
+        <result column="department" property="department" />
+        <result column="userface" property="userface" />
+        <result column="Pentacles_1" property="pentacles1" />
+        <result column="Pentacles_2" property="pentacles2" />
+        <result column="Pentacles_3" property="pentacles3" />
+        <result column="Pentacles_4" property="pentacles4" />
+        <result column="Pentacles_5" property="pentacles5" />
+        <result column="labels" property="labels" />
+        <result column="enabled" property="enabled" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, user_code, user_name, display_name, password, phone, mail, education, specialty, company, department, userface, Pentacles_1, Pentacles_2, Pentacles_3, Pentacles_4, Pentacles_5, labels, enabled
+    </sql>
+
+</mapper>

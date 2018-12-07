@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yuchai.itcommune.mapper.ProcessHistoryMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.yuchai.itcommune.entity.ProcessHistory">
+        <id column="id" property="id" />
+        <result column="instance_id" property="instanceId" />
+        <result column="step_name" property="stepName" />
+        <result column="step_id" property="stepId" />
+        <result column="assignee_name" property="assigneeName" />
+        <result column="assignee_code" property="assigneeCode" />
+        <result column="approval_type" property="approvalType" />
+        <result column="approval_opinion" property="approvalOpinion" />
+        <result column="created_time" property="createdTime" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, instance_id, step_name, step_id, assignee_name, assignee_code, approval_type, approval_opinion, created_time
+    </sql>
+
+</mapper>

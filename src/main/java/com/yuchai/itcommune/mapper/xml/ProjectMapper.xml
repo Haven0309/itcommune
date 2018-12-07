@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yuchai.itcommune.mapper.ProjectMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.yuchai.itcommune.entity.Project">
+        <id column="id" property="id" />
+        <result column="project_type" property="projectType" />
+        <result column="project_name" property="projectName" />
+        <result column="expected_earnings" property="expectedEarnings" />
+        <result column="demand_purpose" property="demandPurpose" />
+        <result column="demand" property="demand" />
+        <result column="project_backgroud" property="projectBackgroud" />
+        <result column="project_desc" property="projectDesc" />
+        <result column="money" property="money" />
+        <result column="expiration_date" property="expirationDate" />
+        <result column="current_step" property="currentStep" />
+        <result column="status" property="status" />
+        <result column="publisher_id" property="publisherId" />
+        <result column="created_date" property="createdDate" />
+        <result column="instance_id" property="instanceId" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, project_type, project_name, expected_earnings, demand_purpose, demand, project_backgroud, project_desc, money, expiration_date, current_step, status, publisher_id, created_date, instance_id
+    </sql>
+
+</mapper>

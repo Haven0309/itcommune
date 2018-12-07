@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yuchai.itcommune.mapper.ProcessMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.yuchai.itcommune.entity.Process">
+        <id column="id" property="id" />
+        <result column="instance_id" property="instanceId" />
+        <result column="process_title" property="processTitle" />
+        <result column="current_node_id" property="currentNodeId" />
+        <result column="current_node" property="currentNode" />
+        <result column="assignee_name" property="assigneeName" />
+        <result column="assignee_code" property="assigneeCode" />
+        <result column="project_id" property="projectId" />
+        <result column="form_url" property="formUrl" />
+        <result column="created_by" property="createdBy" />
+        <result column="created_time" property="createdTime" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, instance_id, process_title, current_node_id, current_node, assignee_name, assignee_code, project_id, form_url, created_by, created_time
+    </sql>
+
+</mapper>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yuchai.itcommune.mapper.BpmVirtualTodoListMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.yuchai.itcommune.entity.BpmVirtualTodoList">
+        <result column="TITLE" property="title" />
+        <result column="CREATOR_NAME" property="creatorName" />
+        <result column="CREATE_TIME" property="createTime" />
+        <result column="ASSIGNEE" property="assignee" />
+        <result column="ASSIGNEDDATE" property="assigneddate" />
+        <result column="ACTIVITY_LABEL" property="activityLabel" />
+        <result column="FORMURL" property="formurl" />
+        <result column="INSTANCE_ID" property="instanceId" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        TITLE, CREATOR_NAME, CREATE_TIME, ASSIGNEE, ASSIGNEDDATE, ACTIVITY_LABEL, FORMURL, INSTANCE_ID
+    </sql>
+
+</mapper>

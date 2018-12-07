@@ -1,0 +1,102 @@
+package com.yuchai.itcommune.controller;
+
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.yuchai.itcommune.entity.*;
+import com.yuchai.itcommune.service.*;
+import com.yuchai.itcommune.util.Result;
+import com.yuchai.itcommune.util.ResultUtil;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import org.springframework.beans.BeanUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+/**
+ * @author Haven
+ * @create 2018-11-25 14:32
+ */
+@Api(tags = "1.7", description = "统计报表", value = "统计报表")
+@RestController
+@CrossOrigin
+@RequestMapping("/report")
+public class ReportDataController {
+    @Autowired
+    private ProjectService projectService;
+    @Autowired
+    private TeamsService teamsService;
+    @Autowired
+    private UserService userService;
+    @Autowired
+    private SalaryTopService salaryTopService;
+    @Autowired
+    private DeptMoneyTopService deptMoneyTopService;
+    @Autowired
+    private ProjectUserVService projectUserVService;
+
+
+
+    @ApiOperation("首页统计")
+    @GetMapping("/homeTotal")
+    public Result total(){
+        List<Project> projects = projectService.list(new QueryWrapper<Project>());
+        int totalMoney = 0;
+        for (Project project:projects) {
+            totalMoney=totalMoney+project.getMoney();
+        }
+        int projectSize = projects.size();
+        int teamSize = teamsService.list(null).size();
+        int UserSize = userService.list(null).size();
+        Map<String,Object> map = new HashMap();
+        map.put("projectSize",projectSize);
+        map.put("teamSize",teamSize);
+        map.put("totalMoney",totalMoney);
+        map.put("UserSize",UserSize);
+        return ResultUtil.genSuccessResult(map);
+    }
+
+    @ApiOperation("收入排行")
+    @GetMapping("/salaryTop")
+    public Result salaryTop(){
+        List<SalaryTop> tops = salaryTopService.list(new QueryWrapper<SalaryTop>(null));
+        List<TeamUser> teamUsers = new ArrayList<>();;
+        for (SalaryTop salaryTop:tops) {
+            TeamUser teamUser = new TeamUser();
+            BeanUtils.copyProperties(salaryTop,teamUser);
+            teamUsers.add(teamUser);
+        }
+//        List<TeamUser> teamUsers = teamUserReportService.salaryTop();
+        for (TeamUser teamUser : teamUsers) {
+            User user = userService.getOne(new QueryWrapper<User>().eq("user_code", teamUser.getUserCode()));
+            if (user == null) {
+                return ResultUtil.genSuccessResult(teamUsers);
+            }
+            teamUser.setUserName(user.getUserName());
+        }
+        return ResultUtil.genSuccessResult(teamUsers);
+    }
+
+    @ApiOperation("部门支出排行")
+    @GetMapping("/deptMoneyTop")
+    public Result deptMoneyTop(){
+        return ResultUtil.genSuccessResult(deptMoneyTopService.list(null));
+    }
+
+    @ApiOperation("我的部门支出")
+    @GetMapping("/deptMoney")
+    public Result deptMoney(String userCode){
+        String department = userService.getOne(new QueryWrapper<User>().eq("user_code", userCode)).getDepartment();
+        if (department == null) {
+            return ResultUtil.genFailResult("部门信息不正确");
+        }
+        List<ProjectUserV> vList = projectUserVService.list(new QueryWrapper<ProjectUserV>().eq("department", department));
+        return ResultUtil.genSuccessResult(vList);
+    }
+}
