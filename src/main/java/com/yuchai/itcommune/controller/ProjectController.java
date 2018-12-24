@@ -4,7 +4,6 @@ package com.yuchai.itcommune.controller;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.battcn.swagger.properties.ApiParamType;
 import com.yuchai.itcommune.entity.Project;
 import com.yuchai.itcommune.entity.TeamUser;
 import com.yuchai.itcommune.entity.Teams;
@@ -86,7 +85,7 @@ public class ProjectController {
      * @return
      */
     @ApiOperation("获取单个项目信息")
-    @ApiImplicitParam(name="id",value = "项目主键id",paramType = ApiParamType.PATH,required = true)
+    @ApiImplicitParam(name="id",value = "项目主键id",required = true)
     @GetMapping("/get/{id}")
     public ProjectVO get(@PathVariable Integer id) {
         ProjectVO projectVO = new ProjectVO();
@@ -107,8 +106,8 @@ public class ProjectController {
      */
     @ApiOperation("分页查询全部项目")
     @ApiImplicitParams({
-            @ApiImplicitParam(name="pageInt",value = "第几页",paramType = ApiParamType.QUERY,required = true),
-            @ApiImplicitParam(name="pageSize",value = "每页数量",paramType = ApiParamType.QUERY,required = true)
+            @ApiImplicitParam(name="pageInt",value = "第几页",required = true),
+            @ApiImplicitParam(name="pageSize",value = "每页数量",required = true)
     })
     @PostMapping("/list/{pageInt}/{pageSize}")
     public Result list(@PathVariable Integer pageInt,
@@ -183,7 +182,7 @@ public class ProjectController {
      * @return
      */
     @ApiOperation("通过流程实例id获取项目信息")
-    @ApiImplicitParam(name="instanceId",value = "流程实例id",paramType = ApiParamType.QUERY,required = true)
+    @ApiImplicitParam(name="instanceId",value = "流程实例id",required = true)
     @GetMapping("/get/process")
     public ProjectVO getListByInstanceId(@RequestParam String instanceId){
         Project project = projectService.getOne(new QueryWrapper<Project>().eq("instance_id", instanceId));
@@ -200,7 +199,7 @@ public class ProjectController {
      * @return
      */
     @ApiOperation("获取用户项目信息")
-    @ApiImplicitParam(name="userCode",value = "用户工号",paramType = ApiParamType.PATH,required = true)
+    @ApiImplicitParam(name="userCode",value = "用户工号",required = true)
     @GetMapping("/user/{userCode}")
     public Result getProjects(@PathVariable String userCode) {
         List<TeamUser> teamUsers = teamUserService.list(new QueryWrapper<TeamUser>().eq("user_code", userCode));

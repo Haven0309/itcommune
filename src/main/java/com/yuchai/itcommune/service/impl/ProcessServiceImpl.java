@@ -8,11 +8,11 @@ import org.springframework.stereotype.Service;
 
 /**
  * <p>
- * 'commune.dept_money_top' is not BASE TABLE 服务实现类
+ *  服务实现类
  * </p>
  *
  * @author Haven
- * @since 2018-12-06
+ * @since 2018-12-21
  */
 @Service
 public class ProcessServiceImpl extends ServiceImpl<ProcessMapper, Process> implements ProcessService {

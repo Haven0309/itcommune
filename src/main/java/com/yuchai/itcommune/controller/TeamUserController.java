@@ -2,7 +2,6 @@ package com.yuchai.itcommune.controller;
 
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.battcn.swagger.properties.ApiParamType;
 import com.yuchai.itcommune.entity.*;
 import com.yuchai.itcommune.service.EvaluationService;
 import com.yuchai.itcommune.service.ProjectService;
@@ -104,7 +103,7 @@ public class TeamUserController {
      */
 
     @ApiOperation("获取一个用户的结算数据")
-    @ApiImplicitParam(name="id",value = "用户工号",paramType = ApiParamType.PATH,required = true)
+    @ApiImplicitParam(name="id",value = "用户工号",required = true)
     @GetMapping("/salary/user/{id}")
     public Result salaryAll(@PathVariable String id){
         List<TeamUser> teamUserList = teamUserService.list(new QueryWrapper<TeamUser>().eq("user_code", id));

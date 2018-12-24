@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yuchai.itcommune.mapper.ProjectUploadMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.yuchai.itcommune.entity.ProjectUpload">
+        <id column="id" property="id" />
+        <result column="project_id" property="projectId" />
+        <result column="file_name" property="fileName" />
+        <result column="file_dir" property="fileDir" />
+        <result column="file_old_name" property="fileOldName" />
+        <result column="created_by" property="createdBy" />
+        <result column="created_time" property="createdTime" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, project_id, file_name, file_dir, file_old_name, created_by, created_time
+    </sql>
+
+</mapper>

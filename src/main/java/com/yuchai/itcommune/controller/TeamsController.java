@@ -2,7 +2,6 @@ package com.yuchai.itcommune.controller;
 
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.battcn.swagger.properties.ApiParamType;
 import com.yuchai.itcommune.entity.Evaluation;
 import com.yuchai.itcommune.entity.TeamUser;
 import com.yuchai.itcommune.entity.Teams;
@@ -76,7 +75,7 @@ public class TeamsController {
      * @return
      */
     @ApiOperation("获取用户团队和项目信息")
-    @ApiImplicitParam(name="userCode",value = "用户工号",paramType = ApiParamType.PATH,required = true)
+    @ApiImplicitParam(name="userCode",value = "用户工号",required = true)
     @GetMapping("/user/{userCode}")
     public List<TeamsVO> getProjects(@PathVariable String userCode) {
         List<TeamUser> teamUsers = teamUserService.list(new QueryWrapper<TeamUser>().eq("user_code", userCode));
@@ -96,8 +95,8 @@ public class TeamsController {
      */
     @ApiOperation("获取我的团队")
     @ApiImplicitParams({
-            @ApiImplicitParam(name="userCode",value = "用户工号",paramType = ApiParamType.QUERY,required = true),
-            @ApiImplicitParam(name="projectId",value = "项目ID",paramType = ApiParamType.QUERY,required = true)
+            @ApiImplicitParam(name="userCode",value = "用户工号",required = true),
+            @ApiImplicitParam(name="projectId",value = "项目ID",required = true)
     })
     @GetMapping("/myTeam")
     public Result getMyTeam(@RequestParam String userCode, @RequestParam Integer projectId) {
@@ -130,8 +129,8 @@ public class TeamsController {
      */
     @ApiOperation("根据项目搜索团队")
     @ApiImplicitParams({
-            @ApiImplicitParam(name="name",value = "用户名",paramType = ApiParamType.QUERY,required = true),
-            @ApiImplicitParam(name="projectId",value = "项目ID",paramType = ApiParamType.PATH,required = true)
+            @ApiImplicitParam(name="name",value = "用户名",required = true),
+            @ApiImplicitParam(name="projectId",value = "项目ID",required = true)
     })
     @GetMapping("/get/{projectId}")
     public Result getTeams(@RequestParam String name, @PathVariable Integer projectId){

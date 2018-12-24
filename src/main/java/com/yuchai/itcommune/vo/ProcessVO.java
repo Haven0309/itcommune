@@ -2,6 +2,7 @@ package com.yuchai.itcommune.vo;
 
 
 import com.yuchai.itcommune.entity.ProcessHistory;
+import com.yuchai.itcommune.entity.ProjectUpload;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -26,6 +27,15 @@ public class ProcessVO {
     private String currentNodeId;
 
     private String currentNode;
+    /**
+     * 下一个节点ID
+     */
+    private String nextNodeId;
+
+    /**
+     * 下一个节点
+     */
+    private String nextNode;
 
     private String assigneeName;
 
@@ -47,6 +57,32 @@ public class ProcessVO {
     private ProjectVO project;
 
     private List<ProcessHistory> histories;
+
+    private List<ProjectUpload> projectUploads;
+
+    public String getNextNodeId() {
+        return nextNodeId;
+    }
+
+    public void setNextNodeId(String nextNodeId) {
+        this.nextNodeId = nextNodeId;
+    }
+
+    public String getNextNode() {
+        return nextNode;
+    }
+
+    public void setNextNode(String nextNode) {
+        this.nextNode = nextNode;
+    }
+
+    public List<ProjectUpload> getProjectUploads() {
+        return projectUploads;
+    }
+
+    public void setProjectUploads(List<ProjectUpload> projectUploads) {
+        this.projectUploads = projectUploads;
+    }
 
     public List<ProcessHistory> getHistories() {
         return histories;

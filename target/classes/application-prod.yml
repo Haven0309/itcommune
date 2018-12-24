@@ -1,0 +1,40 @@
+spring:
+  datasource:
+    dynamic:
+      primary: mysql #设置默认的数据源或者数据源组,默认值即为master
+      datasource:
+        mysql:
+          username: root
+          password: 123456
+          url: jdbc:mysql://172.16.90.15:3306/commune?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=UTC
+          driver-class-name: com.mysql.cj.jdbc.Driver
+        oracle:
+          driver-class-name: oracle.jdbc.driver.OracleDriver
+          url: jdbc:oracle:thin:@erac-scan.yuchai.com:1521/erac
+          username: PORTAL
+          password: PORTAL
+  swagger:
+    # 扫描的包路径,默认扫描所有
+    base-package: com.yuchai.itcommune
+    security:
+      username: swagger
+      password: 123456
+    title: IT公社后台接口文档
+    host: 172.16.90.15:8989
+    version: 1.0
+    description: IT公社后台接口文档
+    contact:
+      name: haven
+
+  #附件上传静态资源访问配置
+  mvc:
+    static-path-pattern: /**
+  resources:
+    static-locations: classpath:/META-INF/resources/,classpath:/resources/, classpath:/static/, classpath:/public/, file:${spring.servlet.multipart.location}
+  servlet:
+    multipart:
+      location: /usr/springboot/
+
+
+mybatis-plus:
+  mapper-locations: classpath:/com/yuchai/*/mapper/xml/*Mapper.xml

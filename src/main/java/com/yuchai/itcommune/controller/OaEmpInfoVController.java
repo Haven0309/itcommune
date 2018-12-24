@@ -1,8 +1,6 @@
 package com.yuchai.itcommune.controller;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.battcn.swagger.properties.ApiDataType;
-import com.battcn.swagger.properties.ApiParamType;
 import com.yuchai.itcommune.entity.OaEmpInfoV;
 import com.yuchai.itcommune.service.OaEmpInfoVService;
 import com.yuchai.itcommune.util.Result;
@@ -34,7 +32,7 @@ public class OaEmpInfoVController {
 
     @GetMapping("/search/{name}")
     @ApiOperation(value = "搜索用户（DONE）")
-    @ApiImplicitParam(name = "name", value = "用户名及工号", dataType = ApiDataType.STRING, paramType = ApiParamType.PATH)
+    @ApiImplicitParam(name = "name", value = "用户名及工号")
     public Result search(@PathVariable String name){
         List<OaEmpInfoV> list = oaEmpInfoVService.list(new QueryWrapper<OaEmpInfoV>().like("employee_name", name).or().like("employee_code", name));
         if (list.size() > 0) {

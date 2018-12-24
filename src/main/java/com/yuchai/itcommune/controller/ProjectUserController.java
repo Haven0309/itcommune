@@ -3,7 +3,6 @@ package com.yuchai.itcommune.controller;
 
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.battcn.swagger.properties.ApiParamType;
 import com.yuchai.itcommune.entity.Project;
 import com.yuchai.itcommune.entity.ProjectUser;
 import com.yuchai.itcommune.service.ProjectService;
@@ -43,7 +42,7 @@ public class ProjectUserController {
      * @return
      */
     @ApiOperation("获取一个用户的结算数据")
-    @ApiImplicitParam(name="id",value = "用户工号",paramType = ApiParamType.PATH,required = true)
+    @ApiImplicitParam(name="id",value = "用户工号",required = true)
     @GetMapping("/salary/user/{id}")
     public Result salaryAll(@PathVariable String id){
         List<ProjectUser> projectUsers = projectUserService.list(new QueryWrapper<ProjectUser>().eq("user_code", id));
@@ -62,7 +61,7 @@ public class ProjectUserController {
      * @return
      */
     @ApiOperation("获取一个项目的结算数据")
-    @ApiImplicitParam(name="id",value = "项目id",paramType = ApiParamType.PATH,required = true)
+    @ApiImplicitParam(name="id",value = "项目id",required = true)
     @GetMapping("/salary/project/{id}")
     public Result salaryByprojectId(@PathVariable Integer id){
         List<ProjectUser> projects = projectUserService.list(new QueryWrapper<ProjectUser>().eq("project_id", id));

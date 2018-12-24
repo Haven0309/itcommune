@@ -8,11 +8,11 @@ import java.io.Serializable;
 
 /**
  * <p>
- * 'commune.dept_money_top' is not BASE TABLE
+ * 
  * </p>
  *
  * @author Haven
- * @since 2018-12-06
+ * @since 2018-12-21
  */
 public class Process implements Serializable {
 
@@ -27,20 +27,48 @@ public class Process implements Serializable {
     private String instanceId;
 
     /**
-     * 项目ID
+     * 流程主题
      */
     private String processTitle;
 
+    /**
+     * 当前节点ID
+     */
     private String currentNodeId;
 
+    /**
+     * 当前节点
+     */
     private String currentNode;
 
+    /**
+     * 下一个节点ID
+     */
+    private String nextNodeId;
+
+    /**
+     * 下一个节点
+     */
+    private String nextNode;
+
+    /**
+     * 审批人名称
+     */
     private String assigneeName;
 
+    /**
+     * 审批人工号
+     */
     private String assigneeCode;
 
+    /**
+     * 项目ID
+     */
     private Integer projectId;
 
+    /**
+     * 访问地址
+     */
     private String formUrl;
 
     /**
@@ -48,6 +76,9 @@ public class Process implements Serializable {
      */
     private String createdBy;
 
+    /**
+     * 创建时间
+     */
     private LocalDateTime createdTime;
 
     @TableField(exist = false)
@@ -99,6 +130,22 @@ public class Process implements Serializable {
 
     public void setCurrentNode(String currentNode) {
         this.currentNode = currentNode;
+    }
+
+    public String getNextNodeId() {
+        return nextNodeId;
+    }
+
+    public void setNextNodeId(String nextNodeId) {
+        this.nextNodeId = nextNodeId;
+    }
+
+    public String getNextNode() {
+        return nextNode;
+    }
+
+    public void setNextNode(String nextNode) {
+        this.nextNode = nextNode;
     }
 
     public String getAssigneeName() {
@@ -157,6 +204,8 @@ public class Process implements Serializable {
         ", processTitle=" + processTitle +
         ", currentNodeId=" + currentNodeId +
         ", currentNode=" + currentNode +
+        ", nextNodeId=" + nextNodeId +
+        ", nextNode=" + nextNode +
         ", assigneeName=" + assigneeName +
         ", assigneeCode=" + assigneeCode +
         ", projectId=" + projectId +

@@ -2,7 +2,6 @@ package com.yuchai.itcommune.controller;
 
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.battcn.swagger.properties.ApiParamType;
 import com.yuchai.itcommune.entity.ActRuTask;
 import com.yuchai.itcommune.entity.Process;
 import com.yuchai.itcommune.service.ActRuTaskService;
@@ -50,7 +49,7 @@ public class ProcessController {
      * 获取统一待办列表
      */
     @ApiOperation("获取统一待办列表")
-    @ApiImplicitParam(name="assigneeCode",value = "用户工号",paramType = ApiParamType.PATH,required = true)
+    @ApiImplicitParam(name="assigneeCode",value = "用户工号",required = true)
     @GetMapping("/todoList/{assigneeCode}")
     public Result todoList(@PathVariable String assigneeCode){
         List<ActRuTask> actRuTasks = actRuTaskService.list(new QueryWrapper<ActRuTask>().eq("ASSIGNEE_", assigneeCode));

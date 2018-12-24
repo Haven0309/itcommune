@@ -20,7 +20,7 @@ public class MysqlMpGenerator {
     public static void main(String[] args) {
         String outputDir = "D:\\workspace\\itcommune\\src\\main\\java";
         String basePackage = "com.yuchai.itcommune";
-        String[] tableNames = new String[]{"act_ru_task","act_hi_actinst","act_hi_procinst","evaluation","process","process_history","project","project_user","tag","team_user","teams","user","dept_money_top","project_user_v","salary_top"};
+        String[] tableNames = new String[]{"process"};
 
         //1. 全局配置
         GlobalConfig gbConfig = new GlobalConfig();

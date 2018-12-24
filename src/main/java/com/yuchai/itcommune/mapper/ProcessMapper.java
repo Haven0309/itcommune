@@ -5,11 +5,11 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 
 /**
  * <p>
- * 'commune.dept_money_top' is not BASE TABLE Mapper 接口
+ *  Mapper 接口
  * </p>
  *
  * @author Haven
- * @since 2018-12-06
+ * @since 2018-12-21
  */
 public interface ProcessMapper extends BaseMapper<Process> {
 

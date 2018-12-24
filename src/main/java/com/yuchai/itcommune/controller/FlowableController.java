@@ -1,7 +1,6 @@
 package com.yuchai.itcommune.controller;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.battcn.swagger.properties.ApiParamType;
 import com.yuchai.itcommune.entity.*;
 import com.yuchai.itcommune.entity.Process;
 import com.yuchai.itcommune.service.*;
@@ -31,7 +30,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.client.RestTemplate;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.InputStream;
@@ -79,6 +77,8 @@ public class FlowableController {
     private ActHiActinstService actHiActinstService;
     @Autowired
     private ActHiProcinstService actHiProcinstService;
+    @Autowired
+    private ProjectUploadService projectUploadService;
 
 
     /**
@@ -166,16 +166,23 @@ public class FlowableController {
     @ResponseBody
     public Result getProcessByInstanceId(@PathVariable String instanceId){
         //获取当前环节信息
-        FlowElement flowElement = getFlowElement(instanceId);
+        FlowElement currentFlowElement = getCurrentFlowElement(instanceId);
+        FlowElement nextFlowElement = getNextFlowElement(instanceId);
         String currentNode = "";
-        if (flowElement == null) {
+        if (currentFlowElement == null) {
             currentNode = "完成";
         }else {
-            currentNode = flowElement.getName();
+            currentNode = currentFlowElement.getName();
         }
+
         //获取流程信息
         Process process = processService.getOne(new QueryWrapper<Process>().eq("instance_id", instanceId));
         process.setCurrentNode(currentNode);
+        if (nextFlowElement != null) {
+            process.setNextNodeId(nextFlowElement.getId());
+            process.setNextNode(nextFlowElement.getName());
+        }
+
         Task task = taskService.createTaskQuery().processInstanceId(instanceId).singleResult();
         if (task != null) {
             process.setAssigneeCode(task.getAssignee());
@@ -190,6 +197,10 @@ public class FlowableController {
         BeanUtils.copyProperties(process,processVO);
         processVO.setProject(projectVO);
 
+        //获取附件信息
+        List<ProjectUpload> projectUploads = projectUploadService.list(new QueryWrapper<ProjectUpload>().eq("project_id", project.getId()));
+        processVO.setProjectUploads(projectUploads);
+
         //获取流程历史记录
         List<ProcessHistory> histories = processHistoryService.list(new QueryWrapper<ProcessHistory>().eq("instance_id", instanceId).orderByDesc("created_time"));
         processVO.setHistories(histories);
@@ -197,7 +208,7 @@ public class FlowableController {
 
     }
 
-    private FlowElement getFlowElement(@PathVariable String instanceId) {
+    private FlowElement getCurrentFlowElement(@PathVariable String instanceId) {
         ProcessInstance pi = runtimeService.createProcessInstanceQuery().processInstanceId(instanceId).singleResult();
         //流程走完的返回
         if (pi == null) {
@@ -206,13 +217,38 @@ public class FlowableController {
         //获取流程环节信息
         BpmnModel bpmnModel = repositoryService.getBpmnModel(pi.getProcessDefinitionId());
         org.flowable.bpmn.model.Process process = bpmnModel.getProcesses().get(0);
+
         //获取全部环节信息
         Map<String, FlowElement> elementMap = process.getFlowElementMap();
+
         Task task = taskService.createTaskQuery().processInstanceId(instanceId).singleResult();
         //获取当前环节
         String id = runtimeService.getActiveActivityIds(task.getExecutionId()).get(0);
-        return process.getFlowElement(id);
+        FlowElement currentFlowElement = process.getFlowElement(id);
+        return currentFlowElement;
     }
+
+    private FlowElement getNextFlowElement(@PathVariable String instanceId) {
+        ProcessInstance pi = runtimeService.createProcessInstanceQuery().processInstanceId(instanceId).singleResult();
+        //流程走完的返回
+        if (pi == null) {
+            return null;
+        }
+        //获取流程环节信息
+        BpmnModel bpmnModel = repositoryService.getBpmnModel(pi.getProcessDefinitionId());
+        org.flowable.bpmn.model.Process process = bpmnModel.getProcesses().get(0);
+
+        //获取全部环节信息
+        Map<String, FlowElement> elementMap = process.getFlowElementMap();
+
+        Task task = taskService.createTaskQuery().processInstanceId(instanceId).singleResult();
+        //获取当前环节
+        String id = runtimeService.getActiveActivityIds(task.getExecutionId()).get(0);
+        //获取下一个环节
+        FlowElement nextFlowElement = process.getFlowElement("t"+(Integer.valueOf(id.substring(1))+1));
+        return nextFlowElement;
+    }
+
     private ProjectVO get( Integer id) {
         ProjectVO projectVO = new ProjectVO();
         BeanUtils.copyProperties(projectService.getById(id),projectVO);
@@ -248,7 +284,7 @@ public class FlowableController {
      * 获取审批管理列表
      */
     @ApiOperation("获取审批管理列表")
-    @ApiImplicitParam(name="userCode",value = "用户工号",paramType = ApiParamType.PATH,required = true)
+    @ApiImplicitParam(name="userCode",value = "用户工号",required = true)
 
     @RequestMapping(value = "/list/{userCode}",method = RequestMethod.GET)
     @ResponseBody
@@ -283,10 +319,10 @@ public class FlowableController {
      */
     @ApiOperation("批准")
     @ApiImplicitParams({
-            @ApiImplicitParam(name="assigneeCode",value = "下个审批人工号",paramType = ApiParamType.QUERY,required = true),
-            @ApiImplicitParam(name="taskId",value = "taskID",paramType = ApiParamType.QUERY,required = true),
-            @ApiImplicitParam(name="approvalOpinion",value = "审批意见",paramType = ApiParamType.QUERY,required = true),
-            @ApiImplicitParam(name="instanceId",value = "流程实例id",paramType = ApiParamType.QUERY,required = true)
+            @ApiImplicitParam(name="assigneeCode",value = "下个审批人工号",required = true),
+            @ApiImplicitParam(name="taskId",value = "taskID",required = true),
+            @ApiImplicitParam(name="approvalOpinion",value = "审批意见",required = true),
+            @ApiImplicitParam(name="instanceId",value = "流程实例id",required = true)
     })
     @RequestMapping(value = "/approve")
     @ResponseBody
@@ -360,8 +396,8 @@ public class FlowableController {
      */
     @ApiOperation("转办")
     @ApiImplicitParams({
-            @ApiImplicitParam(name="assigneeCode",value = "下个审批人工号",paramType = ApiParamType.QUERY,required = true),
-            @ApiImplicitParam(name="taskId",value = "流程taskID",paramType = ApiParamType.QUERY,required = true)
+            @ApiImplicitParam(name="assigneeCode",value = "下个审批人工号",required = true),
+            @ApiImplicitParam(name="taskId",value = "流程taskID",required = true)
     })
     @RequestMapping(value = "/delegate")
     @ResponseBody
@@ -381,7 +417,7 @@ public class FlowableController {
      * 拒绝
      */
     @ApiOperation("拒绝")
-    @ApiImplicitParam(name="taskId",value = "流程taskID",paramType = ApiParamType.QUERY,required = true)
+    @ApiImplicitParam(name="taskId",value = "流程taskID",required = true)
     @ResponseBody
     @RequestMapping(value = "/reject")
     public Result reject(String taskId) {
@@ -399,7 +435,7 @@ public class FlowableController {
      * 跳转
      */
     @ApiOperation("跳转-退回")
-    @ApiImplicitParam(name="instanceId",value = "流程instanceId",paramType = ApiParamType.QUERY,required = true)
+    @ApiImplicitParam(name="instanceId",value = "流程instanceId",required = true)
     @RequestMapping(value = "/changeActivity")
     @ResponseBody
     public Result changeActivity(String instanceId,String approvalOpinion){
@@ -445,7 +481,7 @@ public class FlowableController {
      * 终止流程
      */
     @ApiOperation("终止流程")
-    @ApiImplicitParam(name="instanceId",value = "流程instanceID",paramType = ApiParamType.QUERY,required = true)
+    @ApiImplicitParam(name="instanceId",value = "流程instanceID",required = true)
     @ResponseBody
     @RequestMapping(value = "delete")
     public Result delete(String instanceId) {
@@ -476,7 +512,7 @@ public class FlowableController {
      * @param instanceId 任务ID
      */
     @ApiOperation("生成流程图")
-    @ApiImplicitParam(name="instanceId",value = "流程实例id",paramType = ApiParamType.QUERY,required = true)
+    @ApiImplicitParam(name="instanceId",value = "流程实例id",required = true)
     @RequestMapping(value = "/processDiagram")
     public void genProcessDiagram(HttpServletResponse httpServletResponse, String instanceId) throws Exception {
         ProcessInstance pi = runtimeService.createProcessInstanceQuery().processInstanceId(instanceId).singleResult();
