@@ -35,6 +35,8 @@ spring:
     multipart:
       location: /usr/springboot/
 
-
 mybatis-plus:
   mapper-locations: classpath:/com/yuchai/*/mapper/xml/*Mapper.xml
+
+itcommune:
+  form-url: http://i.yuchai.com/commune/#/flow/

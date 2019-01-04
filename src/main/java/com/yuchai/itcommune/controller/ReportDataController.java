@@ -5,6 +5,7 @@ import com.yuchai.itcommune.entity.*;
 import com.yuchai.itcommune.service.*;
 import com.yuchai.itcommune.util.Result;
 import com.yuchai.itcommune.util.ResultUtil;
+import com.yuchai.itcommune.vo.ProjectVO;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.BeanUtils;
@@ -40,6 +41,8 @@ public class ReportDataController {
     private DeptMoneyTopService deptMoneyTopService;
     @Autowired
     private ProjectUserVService projectUserVService;
+    @Autowired
+    private ProjectUserMoneyService projectUserMoneyService;
 
 
 
@@ -66,7 +69,7 @@ public class ReportDataController {
     @GetMapping("/salaryTop")
     public Result salaryTop(){
         List<SalaryTop> tops = salaryTopService.list(new QueryWrapper<SalaryTop>(null));
-        List<TeamUser> teamUsers = new ArrayList<>();;
+        List<TeamUser> teamUsers = new ArrayList<>();
         for (SalaryTop salaryTop:tops) {
             TeamUser teamUser = new TeamUser();
             BeanUtils.copyProperties(salaryTop,teamUser);
@@ -98,5 +101,19 @@ public class ReportDataController {
         }
         List<ProjectUserV> vList = projectUserVService.list(new QueryWrapper<ProjectUserV>().eq("department", department));
         return ResultUtil.genSuccessResult(vList);
+    }
+
+    @ApiOperation("项目-部门支出情况")
+    @GetMapping("/projectDeptMoney")
+    public Result projectDeptMoney(){
+        List<ProjectUserV> list = projectUserVService.list(new QueryWrapper<ProjectUserV>().orderByDesc("department"));
+        return ResultUtil.genSuccessResult(list);
+    }
+
+    @ApiOperation("项目-人员收入情况")
+    @GetMapping("/projectUserMoney")
+    public Result projectUserMoney(){
+        List<ProjectUserMoney> list = projectUserMoneyService.list(new QueryWrapper<ProjectUserMoney>().ne("quit","2").ne("salary","0").isNotNull("salary"));
+        return ResultUtil.genSuccessResult(list);
     }
 }

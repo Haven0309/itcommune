@@ -35,7 +35,7 @@ public class FileUploadController {
 
     @ApiOperation("处理文件上传")
     @PostMapping(value="/upload")
-    public Result upload(@RequestParam("file") MultipartFile[] file, @RequestParam Integer projectId, HttpServletRequest request) {
+    public Result upload(@RequestParam("file") MultipartFile[] file, HttpServletRequest request) {
         if (null != file && file.length > 0) {
             List<ProjectUpload> list = new ArrayList<>();
             //遍历并保存文件
@@ -61,7 +61,7 @@ public class FileUploadController {
                 try {
                     files.transferTo(dest);
                     //保存附件信息到数据库
-                    ProjectUpload projectUpload = saveFileToMysql(fileOldName, fileName, projectId);
+                    ProjectUpload projectUpload = saveFileToMysql(fileOldName, fileName);
                     list.add(projectUpload);
                 } catch (IllegalStateException | IOException e) {
                     e.printStackTrace();
@@ -75,9 +75,9 @@ public class FileUploadController {
 
 
 
-    private ProjectUpload saveFileToMysql(String fileOldName, String fileName, Integer projectId) {
+    private ProjectUpload saveFileToMysql(String fileOldName, String fileName) {
         ProjectUpload projectUpload = new ProjectUpload();
-        projectUpload.setProjectId(projectId);
+//        projectUpload.setProjectId(projectId);
         projectUpload.setFileName(fileName);
         projectUpload.setFileDir("/upload/"+fileName);
         projectUpload.setFileOldName(fileOldName);

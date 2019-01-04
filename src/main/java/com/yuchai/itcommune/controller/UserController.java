@@ -2,8 +2,10 @@ package com.yuchai.itcommune.controller;
 
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.yuchai.itcommune.entity.OaEmpInfoV;
 import com.yuchai.itcommune.entity.Tag;
 import com.yuchai.itcommune.entity.User;
+import com.yuchai.itcommune.service.OaEmpInfoVService;
 import com.yuchai.itcommune.service.TagService;
 import com.yuchai.itcommune.service.UserService;
 import com.yuchai.itcommune.util.Result;
@@ -30,6 +32,8 @@ public class UserController {
     private UserService userService;
     @Autowired
     private TagService tagService;
+    @Autowired
+    private OaEmpInfoVService oaEmpInfoVService;
 
     /**
      * 更新用户信息
@@ -40,6 +44,9 @@ public class UserController {
     public Result update(@RequestBody UserVO userVO){
         User user = new User();
         BeanUtils.copyProperties(userVO,user);
+        OaEmpInfoV employee = oaEmpInfoVService.getOne(new QueryWrapper<OaEmpInfoV>().eq("employee_code", user.getUserCode()));
+//        user.setDepartment(employee.getGsFullName());
+        user.setPhone(employee.getMobile());
         userService.saveOrUpdate(user);
         List<Tag> tags = userVO.getTags();
         for (Tag tag:tags) {

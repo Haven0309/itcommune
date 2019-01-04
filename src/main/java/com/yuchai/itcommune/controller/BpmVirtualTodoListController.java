@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 /**
  * <p>
@@ -31,9 +32,13 @@ public class BpmVirtualTodoListController {
 
     @ApiOperation("创建更新玉柴云虚拟待办")
     @PostMapping("/saveOrUpdate")
-    public Result saveOrUpdate(BpmVirtualTodoList bpmVirtualTodoList){
+    public Result saveOrUpdate(@RequestBody BpmVirtualTodoList bpmVirtualTodoList){
         bpmVirtualTodoList.setCreateTime(LocalDateTime.now());
         bpmVirtualTodoList.setAssigneddate(LocalDateTime.now());
+        List<BpmVirtualTodoList> list = bpmVirtualTodoListService.list(new QueryWrapper<BpmVirtualTodoList>().eq("INSTANCE_ID", bpmVirtualTodoList.getInstanceId()).eq("ASSIGNEE", bpmVirtualTodoList.getAssignee()));
+        if(list.size()>=1){
+            return ResultUtil.genFailResult("该待办已经存在");
+        }
         boolean b = bpmVirtualTodoListService.saveOrUpdate(bpmVirtualTodoList);
         if (!b) {
             return ResultUtil.genFailResult("添加BPM待办失败");

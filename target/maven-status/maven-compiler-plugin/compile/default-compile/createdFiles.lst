@@ -9,12 +9,14 @@ com\yuchai\itcommune\mapper\ActRuTaskMapper.class
 com\yuchai\itcommune\service\TagService.class
 com\yuchai\itcommune\mapper\TeamUserMapper.class
 com\yuchai\itcommune\service\impl\ProjectUserVServiceImpl.class
+com\yuchai\itcommune\config\FlowableConfig.class
 com\yuchai\itcommune\service\EvaluationService.class
 com\yuchai\itcommune\controller\ProjectController.class
 com\yuchai\itcommune\entity\ActHiActinst.class
 com\yuchai\itcommune\mapper\TeamsMapper.class
 com\yuchai\itcommune\controller\ProjectUploadController.class
 com\yuchai\itcommune\vo\ProjectVO.class
+com\yuchai\itcommune\service\impl\ProjectUserMoneyServiceImpl.class
 com\yuchai\itcommune\service\OaEmpInfoVService.class
 com\yuchai\itcommune\service\ProcessHistoryService.class
 com\yuchai\itcommune\service\impl\ProjectServiceImpl.class
@@ -24,6 +26,7 @@ com\yuchai\itcommune\service\impl\ActRuTaskServiceImpl.class
 com\yuchai\itcommune\mapper\EvaluationMapper.class
 com\yuchai\itcommune\MysqlMpGenerator.class
 com\yuchai\itcommune\service\ProjectUploadService.class
+com\yuchai\itcommune\entity\ProjectUserMoney.class
 com\yuchai\itcommune\entity\Teams.class
 com\yuchai\itcommune\service\impl\EvaluationServiceImpl.class
 com\yuchai\itcommune\controller\ProcessController.class
@@ -63,6 +66,8 @@ com\yuchai\itcommune\OracleMpGenerator.class
 com\yuchai\itcommune\controller\FileUploadController.class
 com\yuchai\itcommune\entity\Process.class
 com\yuchai\itcommune\service\impl\BpmVirtualTodoListServiceImpl.class
+com\yuchai\itcommune\mapper\ProjectUserMoneyMapper.class
+com\yuchai\itcommune\service\ProjectUserMoneyService.class
 com\yuchai\itcommune\controller\ProcessHistoryController.class
 com\yuchai\itcommune\entity\DeptMoneyTop.class
 com\yuchai\itcommune\service\BpmVirtualTodoListService.class

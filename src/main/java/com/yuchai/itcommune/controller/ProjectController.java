@@ -5,9 +5,11 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.yuchai.itcommune.entity.Project;
+import com.yuchai.itcommune.entity.ProjectUpload;
 import com.yuchai.itcommune.entity.TeamUser;
 import com.yuchai.itcommune.entity.Teams;
 import com.yuchai.itcommune.service.ProjectService;
+import com.yuchai.itcommune.service.ProjectUploadService;
 import com.yuchai.itcommune.service.TeamUserService;
 import com.yuchai.itcommune.service.TeamsService;
 import com.yuchai.itcommune.util.Result;
@@ -47,6 +49,8 @@ public class ProjectController {
     private TeamsService teamsService;
     @Autowired
     private TeamUserService teamUserService;
+    @Autowired
+    private ProjectUploadService projectUploadService;
 
     /**
      * 创建项目
@@ -56,13 +60,26 @@ public class ProjectController {
      */
     @ApiOperation("创建项目")
     @PostMapping("/addOrUpdate")
-    public Result saveOrUpdate(@RequestBody Project project) {
-//        Project project = new Project();
-//        BeanUtils.copyProperties(projectVO,project);
+    public Result saveOrUpdate(@RequestBody ProjectVO projectVO) {
+        Project project = new Project();
+        BeanUtils.copyProperties(projectVO,project);
         project.setCreatedDate(LocalDateTime.now());
         project.setProjectType("S");
         projectService.saveOrUpdate(project);
+        //更新附件信息
 //        BeanUtils.copyProperties(project,projectVO);
+        List<ProjectUpload> projectUploads = projectVO.getProjectUploads();
+        for (ProjectUpload projectUpload:projectUploads) {
+//            ProjectUpload projectUpload = new ProjectUpload();
+            projectUpload.setProjectId(project.getId());
+//            projectUpload.setFileName(fileName);
+//            projectUpload.setFileDir("/upload/"+fileName);
+//            projectUpload.setFileOldName(fileOldName);
+//            projectUpload.setCreatedBy("");
+//            projectUpload.setCreatedTime(LocalDateTime.now());
+            projectUploadService.saveOrUpdate(projectUpload);
+        }
+
         return ResultUtil.genSuccessResult(project);
     }
 

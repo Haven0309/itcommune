@@ -1,6 +1,7 @@
 package com.yuchai.itcommune.vo;
 
 
+import com.yuchai.itcommune.entity.ProjectUpload;
 import com.yuchai.itcommune.entity.ProjectUser;
 
 import java.time.LocalDate;
@@ -89,6 +90,7 @@ public class ProjectVO {
      */
     private String instanceId;
 
+
     /**
      * 团队
      */
@@ -98,6 +100,20 @@ public class ProjectVO {
      * 项目金钱
      */
     private List<ProjectUser> projectUsers;
+
+    /**
+     * 项目附件
+     */
+    private List<ProjectUpload> projectUploads;
+
+
+    public List<ProjectUpload> getProjectUploads() {
+        return projectUploads;
+    }
+
+    public void setProjectUploads(List<ProjectUpload> projectUploads) {
+        this.projectUploads = projectUploads;
+    }
 
     public List<ProjectUser> getProjectUsers() {
         return projectUsers;

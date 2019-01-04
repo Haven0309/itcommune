@@ -16,6 +16,9 @@ spring:
   swagger:
     # 扫描的包路径,默认扫描所有
     base-package: com.yuchai.itcommune
+    security:
+      username: swagger
+      password: 123456
     title: IT公社后台接口文档
     host: localhost:8080
     version: 1.0
@@ -31,10 +34,13 @@ spring:
     static-locations: classpath:/META-INF/resources/,classpath:/resources/, classpath:/static/, classpath:/public/, file:${spring.servlet.multipart.location}
   servlet:
     multipart:
-      location: C://Users//Haven//workspace//
-
+      location: /usr/springboot/
+      #location: C://Users//Haven//workspace//
 
 mybatis-plus:
   mapper-locations: classpath:/com/yuchai/*/mapper/xml/*Mapper.xml
-  configuration:
-    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl #打印sql语句,调试用
+#  configuration:
+#    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl #打印sql语句,调试用
+
+itcommune:
+  form-url: http://172.16.90.68:7777/commune/#/flow/

@@ -100,24 +100,25 @@ public class TeamsController {
     })
     @GetMapping("/myTeam")
     public Result getMyTeam(@RequestParam String userCode, @RequestParam Integer projectId) {
-        List<TeamUser> teamUsers = teamUserService.list(new QueryWrapper<TeamUser>().eq("user_code", userCode));
+        List<TeamUser> teamUsers = teamUserService.list(new QueryWrapper<TeamUser>().eq("user_code", userCode).ne("quit","2"));
         for (TeamUser teamUser : teamUsers) {
             TeamsVO teamsVO = new TeamsVO();
             Teams teams = teamsService.getById(teamUser.getTeamId());
-
-            if(teams.getProjectId().equals(projectId)){
-                BeanUtils.copyProperties(teams,teamsVO);
-                List<TeamUser> users = teamUserService.list(new QueryWrapper<TeamUser>().eq("team_id", teams.getId()));
+            if (teams != null) {
+                if(teams.getProjectId().equals(projectId)){
+                    BeanUtils.copyProperties(teams,teamsVO);
+                    List<TeamUser> users = teamUserService.list(new QueryWrapper<TeamUser>().eq("team_id", teams.getId()).ne("quit","2"));
 //                List<UserVO> userVOS = new ArrayList<>();
 //                for (TeamUser tu:users) {
 //                    UserVO userVO = new UserVO();
 //                    BeanUtils.copyProperties(userService.getOne(new QueryWrapper<User>().eq("user_code",tu.getUserCode())),userVO);
 //                    userVOS.add(userVO);
 //                }
-                teamsVO.setTeamUsers(users);
-                List<Evaluation> evaluations = evaluationService.list(new QueryWrapper<Evaluation>().eq("team_id", teams.getId()));
-                teamsVO.setEvaluations(evaluations);
-                return ResultUtil.genSuccessResult(teamsVO);
+                    teamsVO.setTeamUsers(users);
+                    List<Evaluation> evaluations = evaluationService.list(new QueryWrapper<Evaluation>().eq("team_id", teams.getId()));
+                    teamsVO.setEvaluations(evaluations);
+                    return ResultUtil.genSuccessResult(teamsVO);
+                }
             }
 
         }

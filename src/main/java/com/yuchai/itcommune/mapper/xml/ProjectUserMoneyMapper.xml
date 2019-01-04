@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yuchai.itcommune.mapper.ProjectUserMoneyMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.yuchai.itcommune.entity.ProjectUserMoney">
+        <result column="project_id" property="projectId" />
+        <result column="project_name" property="projectName" />
+        <result column="project_desc" property="projectDesc" />
+        <result column="team_id" property="teamId" />
+        <result column="team_name" property="teamName" />
+        <result column="user_code" property="userCode" />
+        <result column="user_name" property="userName" />
+        <result column="salary" property="salary" />
+        <result column="team_desc" property="teamDesc" />
+        <result column="team_leader" property="teamLeader" />
+        <result column="quit" property="quit" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        project_id, project_name, project_desc, team_id, team_name, user_code, user_name, salary, team_desc, team_leader, quit
+    </sql>
+
+</mapper>

@@ -22,7 +22,7 @@ public class SalaryTop implements Serializable {
      */
     private String userCode;
 
-    private BigDecimal salary;
+    private Integer salary;
 
 
     public String getUserCode() {
@@ -33,11 +33,11 @@ public class SalaryTop implements Serializable {
         this.userCode = userCode;
     }
 
-    public BigDecimal getSalary() {
+    public Integer getSalary() {
         return salary;
     }
 
-    public void setSalary(BigDecimal salary) {
+    public void setSalary(Integer salary) {
         this.salary = salary;
     }
 
