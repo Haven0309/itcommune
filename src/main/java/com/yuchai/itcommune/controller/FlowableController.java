@@ -82,6 +82,8 @@ public class FlowableController {
     private ProjectUploadService projectUploadService;
     @Autowired
     private BpmVirtualTodoListController bpmVirtualTodoListController;
+    @Autowired
+    private OaEmpInfoVService oaEmpInfoVService;
 
     @Value("${itcommune.form-url}")
     private String formUrl;
@@ -125,9 +127,9 @@ public class FlowableController {
         }
         //更新到待办表
         Process process = new Process();
-        process.setCreatedBy(this.getUser(createdBy).getUserName());
+        process.setCreatedBy(this.getUser(createdBy));
         process.setAssigneeCode(assigneeCode);
-        process.setAssigneeName(this.getUser(assigneeCode).getUserName());
+        process.setAssigneeName(this.getUser(assigneeCode));
         process.setCreatedTime(LocalDateTime.now());
         process.setFormUrl("www.baidu.com");
         process.setInstanceId(instanceId);
@@ -135,13 +137,15 @@ public class FlowableController {
         process.setProjectId(Integer.valueOf(projectId));
         process.setCurrentNode("申请部门正职审批");
         process.setCurrentNodeId("t2");
+        process.setNextNodeId("t3");
+        process.setNextNode("IT公社秘书长审核");
         process.setTaskId(taskId);
         processService.saveOrUpdate(process);
 
         //在玉柴云虚拟待办表中添加数据
         BpmVirtualTodoList bpmVirtualTodo = new BpmVirtualTodoList();
         bpmVirtualTodo.setCreateTime(LocalDateTime.now());
-        bpmVirtualTodo.setCreatorName(this.getUser(createdBy).getUserName());
+        bpmVirtualTodo.setCreatorName(this.getUser(createdBy));
         bpmVirtualTodo.setAssignee(assigneeCode);
         bpmVirtualTodo.setAssigneddate(LocalDateTime.now());
         bpmVirtualTodo.setActivityLabel("申请部门正职审批");
@@ -155,7 +159,7 @@ public class FlowableController {
         history.setApprovalOpinion("同意");
         history.setApprovalType("提交");
         history.setAssigneeCode(assigneeCode);
-        history.setAssigneeName(this.getUser(assigneeCode).getUserName());
+        history.setAssigneeName(this.getUser(assigneeCode));
         history.setInstanceId(instanceId);
         history.setStepName("起草");
         history.setCreatedTime(LocalDateTime.now());
@@ -171,7 +175,7 @@ public class FlowableController {
     @ApiOperation("通过instance获取流程及项目信息")
     @GetMapping("/detail/{instanceId}")
     @ResponseBody
-    public Result getProcessByInstanceId(@PathVariable String instanceId){
+    public Result getProcessDetail(@PathVariable String instanceId){
         //获取当前环节信息
         FlowElement currentFlowElement = getCurrentFlowElement(instanceId);
         FlowElement nextFlowElement = getNextFlowElement(instanceId);
@@ -367,33 +371,37 @@ public class FlowableController {
         taskService.complete(task.getId(), map);
         //更新项目信息
         FlowElement currentFlowElement = getCurrentFlowElement(instanceId);
-        Project project = projectService.getOne(new QueryWrapper<Project>().eq("instance_id", instanceId));
-        String currentStep = currentFlowElement.getName();
-        project.setCurrentStep(currentStep);
-        //更新状态
-        if (currentStep.equals("发布")) {
-            project.setStatus("进行中");
-        }else if(currentStep.equals("结算")){
-            project.setStatus("完成");
-        }
-        projectService.saveOrUpdate(project);
+        updateProject(instanceId, currentFlowElement);
 
 
         //更新流程信息
         FlowElement nextFlowElement = getNextFlowElement(instanceId);
-        Process process = processService.getOne(new QueryWrapper<Process>().eq("instance_id",instanceId));
-        process.setAssigneeCode(assigneeCode);
-        process.setAssigneeName(getUser(assigneeCode).getUserName());
-        process.setCurrentNode(currentFlowElement.getName());
-        process.setCurrentNodeId(currentFlowElement.getId());
-
-        if (nextFlowElement != null){
-            process.setNextNode(nextFlowElement.getName());
-            process.setNextNodeId(nextFlowElement.getId());
-        }
-        processService.saveOrUpdate(process);
+        updateProcess(instanceId, assigneeCode, currentFlowElement, nextFlowElement);
 
         //更新玉柴云虚拟待办表中待办数据
+        updateBPMTodo(instanceId, assigneeCode, nextFlowElement);
+
+        //更新流程历史
+        updateProcessHistory(instanceId, currentCode, approvalOpinion, oldFlowElement);
+//        CallProcedureController callProcedureController = new CallProcedureController();
+//        callProcedureController.delTodo(assigneeCode,taskId);
+        return ResultUtil.genSuccessResult(map);
+    }
+
+    private void updateProcessHistory(String instanceId, String currentCode, String approvalOpinion, FlowElement oldFlowElement) {
+        ProcessHistory history = new ProcessHistory();
+        history.setApprovalOpinion(approvalOpinion);
+        history.setApprovalType("提交");
+        history.setAssigneeCode(currentCode);
+        history.setAssigneeName(this.getUser(currentCode));
+        history.setInstanceId(instanceId);
+        history.setStepName(oldFlowElement.getName());
+        history.setStepId(oldFlowElement.getId());
+        history.setCreatedTime(LocalDateTime.now());
+        processHistoryService.saveOrUpdate(history);
+    }
+
+    private void updateBPMTodo(String instanceId, String assigneeCode, FlowElement nextFlowElement) {
         BpmVirtualTodoList bpmVirtualTodo = new BpmVirtualTodoList();
 //        bpmVirtualTodo.setCreateTime(LocalDateTime.now());
 //        bpmVirtualTodo.setCreatorName(this.getUser(createdBy).getUserName());
@@ -406,21 +414,33 @@ public class FlowableController {
         bpmVirtualTodo.setInstanceId(instanceId);
 //        bpmVirtualTodo.setFormurl(formUrl+instanceId);
         bpmVirtualTodoListController.saveOrUpdate(bpmVirtualTodo);
+    }
 
-        //更新流程历史
-        ProcessHistory history = new ProcessHistory();
-        history.setApprovalOpinion(approvalOpinion);
-        history.setApprovalType("提交");
-        history.setAssigneeCode(currentCode);
-        history.setAssigneeName(this.getUser(currentCode).getUserName());
-        history.setInstanceId(instanceId);
-        history.setStepName(oldFlowElement.getName());
-        history.setStepId(oldFlowElement.getId());
-        history.setCreatedTime(LocalDateTime.now());
-        processHistoryService.saveOrUpdate(history);
-//        CallProcedureController callProcedureController = new CallProcedureController();
-//        callProcedureController.delTodo(assigneeCode,taskId);
-        return ResultUtil.genSuccessResult(map);
+    private void updateProcess(String instanceId, String assigneeCode, FlowElement currentFlowElement, FlowElement nextFlowElement) {
+        Process process = processService.getOne(new QueryWrapper<Process>().eq("instance_id",instanceId));
+        process.setAssigneeCode(assigneeCode);
+        process.setAssigneeName(getUser(assigneeCode));
+        process.setCurrentNode(currentFlowElement.getName());
+        process.setCurrentNodeId(currentFlowElement.getId());
+
+        if (nextFlowElement != null){
+            process.setNextNode(nextFlowElement.getName());
+            process.setNextNodeId(nextFlowElement.getId());
+        }
+        processService.saveOrUpdate(process);
+    }
+
+    private void updateProject(String instanceId, FlowElement currentFlowElement) {
+        Project project = projectService.getOne(new QueryWrapper<Project>().eq("instance_id", instanceId));
+        String currentStep = currentFlowElement.getName();
+        project.setCurrentStep(currentStep);
+        //更新状态
+        if (currentStep.equals("发布")) {
+            project.setStatus("进行中");
+        }else if(currentStep.equals("结算")){
+            project.setStatus("完成");
+        }
+        projectService.saveOrUpdate(project);
     }
 
     /**
@@ -497,15 +517,16 @@ public class FlowableController {
         }else{
             taskService.delegateTask(task.getId(), ass);
         }
+        currentFlowElement = getCurrentFlowElement(instanceId);
+        //更新项目信息
+        updateProject(instanceId,currentFlowElement);
+        //更新流程信息
+        FlowElement nextFlowElement = getNextFlowElement(instanceId);
+        updateProcess(instanceId, ass, currentFlowElement, nextFlowElement);
 
         //更新玉柴云虚拟待办表中待办数据
-        currentFlowElement = getCurrentFlowElement(instanceId);
-        BpmVirtualTodoList bpmVirtualTodo = new BpmVirtualTodoList();
-        bpmVirtualTodo.setAssignee(ass);
-        bpmVirtualTodo.setAssigneddate(LocalDateTime.now());
-        bpmVirtualTodo.setActivityLabel(currentFlowElement.getName());
-        bpmVirtualTodo.setInstanceId(instanceId);
-        bpmVirtualTodoListController.saveOrUpdate(bpmVirtualTodo);
+        updateBPMTodo(instanceId, ass, nextFlowElement);
+
 
         //更新流程历史
         ActHiActinst two = actHiActinstService.getOne(new QueryWrapper<ActHiActinst>().eq("PROC_INST_ID_", instanceId).eq("ACT_ID_", currentActivityId));
@@ -513,7 +534,7 @@ public class FlowableController {
         history.setApprovalOpinion(approvalOpinion);
         history.setApprovalType("退回");
         history.setAssigneeCode(two.getAssignee());
-        history.setAssigneeName(getUser(two.getAssignee()).getUserName());
+        history.setAssigneeName(getUser(two.getAssignee()));
         history.setInstanceId(instanceId);
         history.setStepName(currentFlowElement.getName());
         history.setCreatedTime(LocalDateTime.now());
@@ -605,9 +626,9 @@ public class FlowableController {
         }
     }
 
-    private User getUser(String userCode){
-        User user = userService.getOne(new QueryWrapper<User>().eq("user_code", userCode));
+    private String getUser(String userCode){
+        OaEmpInfoV user = oaEmpInfoVService.getOne(new QueryWrapper<OaEmpInfoV>().eq("EMPLOYEE_CODE", userCode));
 
-        return user;
+        return user.getEmployeeName();
     }
 }

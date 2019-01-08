@@ -49,7 +49,7 @@ public class ReportDataController {
     @ApiOperation("首页统计")
     @GetMapping("/homeTotal")
     public Result total(){
-        List<Project> projects = projectService.list(new QueryWrapper<Project>());
+        List<Project> projects = projectService.list();
         int totalMoney = 0;
         for (Project project:projects) {
             totalMoney=totalMoney+project.getMoney();
@@ -99,14 +99,14 @@ public class ReportDataController {
         if (department == null) {
             return ResultUtil.genFailResult("部门信息不正确");
         }
-        List<ProjectUserV> vList = projectUserVService.list(new QueryWrapper<ProjectUserV>().eq("department", department));
+        List<ProjectUserV> vList = projectUserVService.list(new QueryWrapper<ProjectUserV>().eq("department", department).eq("status","完成"));
         return ResultUtil.genSuccessResult(vList);
     }
 
     @ApiOperation("项目-部门支出情况")
     @GetMapping("/projectDeptMoney")
     public Result projectDeptMoney(){
-        List<ProjectUserV> list = projectUserVService.list(new QueryWrapper<ProjectUserV>().orderByDesc("department"));
+        List<ProjectUserV> list = projectUserVService.list(new QueryWrapper<ProjectUserV>().eq("status","完成").orderByDesc("department"));
         return ResultUtil.genSuccessResult(list);
     }
 
