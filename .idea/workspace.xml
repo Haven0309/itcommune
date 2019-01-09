@@ -2,45 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="42ff02d9-62da-4bda-b67b-da4e005e753e" name="Default" comment="增加附件上传功能">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_github_crab2died_Excel4J_3_0_0_Alpha.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_github_virtuald_curvesapi_1_04.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_commons_commons_collections4_4_1.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_commons_commons_csv_1_6.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_poi_poi_3_17.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_poi_poi_ooxml_3_17.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_poi_poi_ooxml_schemas_3_17.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_xmlbeans_xmlbeans_2_6_0.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__stax_stax_api_1_0_1.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/yuchai/itcommune/annotation/Log.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/yuchai/itcommune/aspect/LoggerAspect.aj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/yuchai/itcommune/controller/ExcelController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/yuchai/itcommune/entity/Student1.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/yuchai/itcommune/entity/Student2.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/yuchai/itcommune/entity/Student2DateConverter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/yuchai/itcommune/entity/Student2ExpelConverter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/yuchai/itcommune/util/DateTimeUtil.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/yuchai/itcommune/util/ToolUtil.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/excelTemplate/map_template.xlsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/excelTemplate/normal_batch_sheet_template.xlsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/excelTemplate/normal_template.xlsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/excelTemplate/students_01.xlsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/excelTemplate/students_02.xlsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/itcommune.iml" beforeDir="false" afterPath="$PROJECT_DIR$/itcommune.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/yuchai/itcommune/annotation/ParamNotNull.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/yuchai/itcommune/aspect/ParamNotNullAspect.aj" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/yuchai/itcommune/controller/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/yuchai/itcommune/controller/LoginController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/yuchai/itcommune/controller/ProcessController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/yuchai/itcommune/controller/ProcessController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/yuchai/itcommune/interceptor/AuthTokenInterceptor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/yuchai/itcommune/interceptor/AuthTokenInterceptor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/yuchai/itcommune/util/JwtUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/yuchai/itcommune/util/JwtUtil.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/yuchai/itcommune/util/ResultUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/yuchai/itcommune/util/ResultUtil.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/yuchai/itcommune/annotation/ParamNotNull.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/yuchai/itcommune/controller/LoginController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/yuchai/itcommune/controller/LoginController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/yuchai/itcommune/controller/ProcessController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/yuchai/itcommune/controller/ProcessController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/yuchai/itcommune/interceptor/AuthTokenInterceptor.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/yuchai/itcommune/interceptor/AuthTokenInterceptor.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/yuchai/itcommune/util/JwtUtil.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/yuchai/itcommune/util/JwtUtil.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/yuchai/itcommune/util/ResultUtil.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/yuchai/itcommune/util/ResultUtil.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -55,14 +17,23 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="ExcelController.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="ExcelController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/yuchai/itcommune/controller/ExcelController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-190">
-              <caret line="86" column="16" lean-forward="true" selection-start-line="86" selection-start-column="16" selection-end-line="86" selection-end-column="16" />
+            <state relative-caret-position="-57">
+              <caret line="30" column="25" lean-forward="true" selection-start-line="30" selection-start-column="25" selection-end-line="30" selection-end-column="25" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/.gitignore">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="171">
+              <caret line="9" column="12" lean-forward="true" selection-start-line="9" selection-start-column="12" selection-end-line="9" selection-end-column="12" />
             </state>
           </provider>
         </entry>
@@ -193,78 +164,6 @@
               <item name="itcommune" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="itcommune" type="b2602c69:ProjectViewProjectNode" />
-              <item name="itcommune" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="itcommune" type="b2602c69:ProjectViewProjectNode" />
-              <item name="itcommune" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="itcommune" type="b2602c69:ProjectViewProjectNode" />
-              <item name="itcommune" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="itcommune" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="itcommune" type="b2602c69:ProjectViewProjectNode" />
-              <item name="itcommune" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="itcommune" type="462c0819:PsiDirectoryNode" />
-              <item name="aspect" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="itcommune" type="b2602c69:ProjectViewProjectNode" />
-              <item name="itcommune" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="itcommune" type="462c0819:PsiDirectoryNode" />
-              <item name="config" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="itcommune" type="b2602c69:ProjectViewProjectNode" />
-              <item name="itcommune" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="itcommune" type="462c0819:PsiDirectoryNode" />
-              <item name="controller" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="itcommune" type="b2602c69:ProjectViewProjectNode" />
-              <item name="itcommune" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="itcommune" type="462c0819:PsiDirectoryNode" />
-              <item name="entity" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="itcommune" type="b2602c69:ProjectViewProjectNode" />
-              <item name="itcommune" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="itcommune" type="b2602c69:ProjectViewProjectNode" />
-              <item name="itcommune" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="excelTemplate" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
@@ -302,9 +201,9 @@
       <recent name="com.yuchai.itcommune.annotation" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\workspace\itcommune" />
       <recent name="D:\workspace\itcommune\src\main\java\com\yuchai\itcommune\entity" />
       <recent name="D:\workspace\itcommune\src\main\resources" />
-      <recent name="D:\workspace\itcommune" />
       <recent name="D:\workspace\itcommune\src\main\java\com\yuchai\itcommune\config" />
     </key>
   </component>
@@ -454,7 +353,7 @@
       <workItem from="1546907920786" duration="7665000" />
       <workItem from="1546919070219" duration="3685000" />
       <workItem from="1546940307123" duration="2789000" />
-      <workItem from="1546993487532" duration="9417000" />
+      <workItem from="1546993487532" duration="9660000" />
     </task>
     <task id="LOCAL-00001" summary="增加附件上传功能">
       <created>1545619100499</created>
@@ -467,7 +366,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="141162000" />
+    <option name="totallyTimeSpent" value="141405000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -503,8 +402,8 @@
       <window_info anchor="bottom" id="Version Control" order="14" weight="0.3289256" />
       <window_info anchor="bottom" id="Run" order="3" weight="0.5594329" />
       <window_info anchor="bottom" id="Spring" order="8" />
-      <window_info anchor="bottom" id="Terminal" order="9" weight="0.29116684" />
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4981884" visible="true" weight="0.1977612" />
+      <window_info anchor="bottom" id="Terminal" order="9" visible="true" weight="0.29116684" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.4981884" visible="true" weight="0.1977612" />
       <window_info anchor="bottom" id="Problems" order="0" />
       <window_info anchor="right" id="Bean Validation" order="8" />
       <window_info id="Web" order="6" side_tool="true" />
@@ -575,13 +474,6 @@
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/yuchai/itcommune/MysqlMpGenerator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="266">
-          <caret line="21" column="52" lean-forward="true" selection-start-line="21" selection-start-column="52" selection-end-line="21" selection-end-column="52" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/yuchai/itcommune/vo/ProjectVO.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="95">
@@ -953,11 +845,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/yuchai/itcommune/controller/ExcelController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-190">
-          <caret line="86" column="16" lean-forward="true" selection-start-line="86" selection-start-column="16" selection-end-line="86" selection-end-column="16" />
+        <state relative-caret-position="-57">
+          <caret line="30" column="25" lean-forward="true" selection-start-line="30" selection-start-column="25" selection-end-line="30" selection-end-column="25" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="171">
+          <caret line="9" column="12" lean-forward="true" selection-start-line="9" selection-start-column="12" selection-end-line="9" selection-end-column="12" />
         </state>
       </provider>
     </entry>
