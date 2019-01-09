@@ -9,7 +9,9 @@ import com.yuchai.itcommune.annotation.PassToken;
 import com.yuchai.itcommune.annotation.UserLoginToken;
 import com.yuchai.itcommune.entity.User;
 import com.yuchai.itcommune.service.UserService;
+import com.yuchai.itcommune.util.JwtUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.context.request.RequestScope;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
@@ -39,6 +41,8 @@ public class AuthTokenInterceptor implements HandlerInterceptor {
         if (method.isAnnotationPresent(PassToken.class)) {
             PassToken passToken = method.getAnnotation(PassToken.class);
             if (passToken.required()) {
+                //如果当前url不需要认证，则注入当前登录用户时，给一个空的
+                request.setAttribute("currentUser",new User());
                 return true;
             }
         }
@@ -63,9 +67,10 @@ public class AuthTokenInterceptor implements HandlerInterceptor {
                     throw new RuntimeException("用户不存在，请重新登录");
                 }
                 // 验证 token
-                JWTVerifier jwtVerifier = JWT.require(Algorithm.HMAC256(user.getPassword())).build();
+                JWTVerifier jwtVerifier = JWT.require(Algorithm.HMAC256(JwtUtil.SECRET)).build();
                 try {
                     jwtVerifier.verify(token);
+                    request.setAttribute("currentUser",user);
                 } catch (JWTVerificationException e) {
                     throw new RuntimeException("401");
                 }

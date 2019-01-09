@@ -16,8 +16,8 @@ import java.util.Map;
  * @create 2019-01-08 9:17
  */
 public class JwtUtil {
-    private static final String SECRET = "com.yuchai.secret";
-    private static final String ISSUER = "haven";
+    public static final String SECRET = "com.yuchai.secret";
+    public static final String ISSUER = "haven";
 
     /**
      * 生成token
