@@ -6,6 +6,7 @@ import com.yuchai.itcommune.entity.Process;
 import com.yuchai.itcommune.service.*;
 import com.yuchai.itcommune.util.Result;
 import com.yuchai.itcommune.util.ResultUtil;
+import com.yuchai.itcommune.util.ToolUtil;
 import com.yuchai.itcommune.vo.ProcessVO;
 import com.yuchai.itcommune.vo.ProjectVO;
 import com.yuchai.itcommune.vo.TeamsVO;
@@ -101,6 +102,7 @@ public class FlowableController {
         createdBy = map.get("createdBy").toString();
         String title = map.get("title").toString();
         String assigneeCode = map.get("assigneeCode").toString();
+        map.replace("assigneeCode",createdBy);
         String projectId = map.get("projectId").toString();
         String formurl = map.get("formurl").toString();
         //设置流程创建人
@@ -113,7 +115,19 @@ public class FlowableController {
         }
         ProcessInstance processInstance = runtimeService.startProcessInstanceByKey("itcommunity", map);
         String instanceId = processInstance.getProcessInstanceId();
-        String taskId = processInstance.getId();
+//        String taskId = processInstance.getId();
+        //跳过第一个环节
+        HashMap<String, Object> map1 = new HashMap<>();
+        map1.put("outcome", "y");
+        if (assigneeCode == null) {
+            return ResultUtil.genFailResult("assigneeCode为空");
+        } else {
+            map1.put("assigneeCode", assigneeCode);
+        }
+        Task task = taskService.createTaskQuery().processInstanceId(instanceId).singleResult();
+        String taskId = task.getId();
+        taskService.complete(taskId, map1);
+
         //更新流程实例ID到项目
         Project project = new Project();
         project.setId(new Integer(projectId));
@@ -158,14 +172,15 @@ public class FlowableController {
         ProcessHistory history = new ProcessHistory();
         history.setApprovalOpinion("同意");
         history.setApprovalType("提交");
-        history.setAssigneeCode(assigneeCode);
-        history.setAssigneeName(this.getUser(assigneeCode));
+        history.setAssigneeCode(createdBy);
+        history.setAssigneeName(this.getUser(createdBy));
         history.setInstanceId(instanceId);
-        history.setStepName("起草");
+        history.setStepName("发布人填写");
+        history.setStepId("t1");
         history.setCreatedTime(LocalDateTime.now());
         processHistoryService.saveOrUpdate(history);
 
-        map.put("taskId",taskId);
+//        map.put("taskId",taskId);
         map.put("instanceId",instanceId);
         map.put("code","200");
         map.put("message","SUCCESS");
@@ -356,35 +371,24 @@ public class FlowableController {
         } else {
             map.put("assigneeCode", assigneeCode);
         }
-//        //获取流程环节信息
-//        ProcessInstance pi = runtimeService.createProcessInstanceQuery().processInstanceId(instanceId).singleResult();
-//        BpmnModel bpmnModel = repositoryService.getBpmnModel(pi.getProcessDefinitionId());
-//        org.flowable.bpmn.model.Process processEn = bpmnModel.getProcesses().get(0);
-//        String id = runtimeService.getActiveActivityIds(task.getExecutionId()).get(0);
-//        FlowElement currentFlowElement = processEn.getFlowElement(id);
-//        String currentStep = task.getName();
+
         DelegationState delegationState = task.getDelegationState();
         //判断是否被委托过delegateTask
         if (delegationState != null && delegationState.toString().equals("PENDING")) {
             taskService.resolveTask(task.getId(), map);
         }
         taskService.complete(task.getId(), map);
-        //更新项目信息
+
         FlowElement currentFlowElement = getCurrentFlowElement(instanceId);
-        updateProject(instanceId, currentFlowElement);
-
-
-        //更新流程信息
         FlowElement nextFlowElement = getNextFlowElement(instanceId);
-        updateProcess(instanceId, assigneeCode, currentFlowElement, nextFlowElement);
-
         //更新玉柴云虚拟待办表中待办数据
         updateBPMTodo(instanceId, assigneeCode, nextFlowElement);
-
+        //更新流程信息
+        updateProcess(instanceId, assigneeCode, currentFlowElement, nextFlowElement);
+        //更新项目信息
+        updateProject(instanceId, currentFlowElement);
         //更新流程历史
         updateProcessHistory(instanceId, currentCode, approvalOpinion, oldFlowElement);
-//        CallProcedureController callProcedureController = new CallProcedureController();
-//        callProcedureController.delTodo(assigneeCode,taskId);
         return ResultUtil.genSuccessResult(map);
     }
 
@@ -420,9 +424,13 @@ public class FlowableController {
         Process process = processService.getOne(new QueryWrapper<Process>().eq("instance_id",instanceId));
         process.setAssigneeCode(assigneeCode);
         process.setAssigneeName(getUser(assigneeCode));
-        process.setCurrentNode(currentFlowElement.getName());
-        process.setCurrentNodeId(currentFlowElement.getId());
-
+        if (currentFlowElement == null) {
+            process.setCurrentNode("结束");
+            process.setCurrentNodeId("t10");
+        }else {
+            process.setCurrentNode(currentFlowElement.getName());
+            process.setCurrentNodeId(currentFlowElement.getId());
+        }
         if (nextFlowElement != null){
             process.setNextNode(nextFlowElement.getName());
             process.setNextNodeId(nextFlowElement.getId());
@@ -432,12 +440,17 @@ public class FlowableController {
 
     private void updateProject(String instanceId, FlowElement currentFlowElement) {
         Project project = projectService.getOne(new QueryWrapper<Project>().eq("instance_id", instanceId));
-        String currentStep = currentFlowElement.getName();
-        project.setCurrentStep(currentStep);
-        //更新状态
-        if (currentStep.equals("发布")) {
-            project.setStatus("进行中");
-        }else if(currentStep.equals("结算")){
+        if (currentFlowElement != null) {
+            String currentStep = currentFlowElement.getId();
+            project.setCurrentStep(currentFlowElement.getName());
+            //更新状态
+            if (currentStep.equals("t5")) {
+                project.setStatus("进行中");
+            }else if(currentStep.equals("t10")){
+                project.setStatus("完成");
+            }
+        }else {
+            project.setCurrentStep("结束");
             project.setStatus("完成");
         }
         projectService.saveOrUpdate(project);
@@ -503,11 +516,12 @@ public class FlowableController {
         FlowElement currentFlowElement = processEn.getFlowElement(id);
         String currentActivityId = currentFlowElement.getId();
         int nextActivityId = Integer.parseInt(currentActivityId.substring(1))-1;
+        //执行退回操作
         runtimeService.createChangeActivityStateBuilder()
                 .processInstanceId(instanceId).moveActivityIdTo(currentActivityId,"t"+nextActivityId)
                 .changeState();
 
-
+        //设置退回人
         ActHiActinst one = actHiActinstService.getOne(new QueryWrapper<ActHiActinst>().eq("PROC_INST_ID_", instanceId).eq("ACT_ID_", "t"+nextActivityId));
         task = taskService.createTaskQuery().processInstanceId(pi.getId()).singleResult();
         String ass = one.getAssignee();
@@ -537,6 +551,7 @@ public class FlowableController {
         history.setAssigneeName(getUser(two.getAssignee()));
         history.setInstanceId(instanceId);
         history.setStepName(currentFlowElement.getName());
+        history.setStepId(currentFlowElement.getId());
         history.setCreatedTime(LocalDateTime.now());
         processHistoryService.saveOrUpdate(history);
 
@@ -627,8 +642,10 @@ public class FlowableController {
     }
 
     private String getUser(String userCode){
+        if (userCode.equals("admin")) {
+            return "流程管理员";
+        }
         OaEmpInfoV user = oaEmpInfoVService.getOne(new QueryWrapper<OaEmpInfoV>().eq("EMPLOYEE_CODE", userCode));
-
         return user.getEmployeeName();
     }
 }
