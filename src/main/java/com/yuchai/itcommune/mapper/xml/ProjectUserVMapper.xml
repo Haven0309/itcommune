@@ -14,11 +14,14 @@
         <result column="status" property="status" />
         <result column="money" property="money" />
         <result column="expected_earnings" property="expectedEarnings" />
+        <result column="it_commune" property="itCommune" />
+        <result column="expiration_date" property="expirationDate" />
+        <result column="created_date" property="createdDate" />
     </resultMap>
 
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
-        publisher_id, user_name, display_name, company, department, project_name, project_desc, status, money, expected_earnings
+        publisher_id, user_name, display_name, company, department, project_name, project_desc, status, money, expected_earnings, it_commune, expiration_date, created_date
     </sql>
 
 </mapper>

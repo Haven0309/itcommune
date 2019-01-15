@@ -1,6 +1,8 @@
 package com.yuchai.itcommune.entity;
 
+import java.math.BigDecimal;
 import com.baomidou.mybatisplus.annotation.IdType;
+import java.time.LocalDateTime;
 import com.baomidou.mybatisplus.annotation.TableId;
 import java.io.Serializable;
 
@@ -10,7 +12,7 @@ import java.io.Serializable;
  * </p>
  *
  * @author Haven
- * @since 2018-12-06
+ * @since 2019-01-15
  */
 public class ProjectUserV implements Serializable {
 
@@ -65,6 +67,18 @@ public class ProjectUserV implements Serializable {
      * 预期收益
      */
     private String expectedEarnings;
+
+    private BigDecimal itCommune;
+
+    /**
+     * 要求完成时间
+     */
+    private LocalDateTime expirationDate;
+
+    /**
+     * 创建时间
+     */
+    private LocalDateTime createdDate;
 
 
     public String getPublisherId() {
@@ -147,6 +161,30 @@ public class ProjectUserV implements Serializable {
         this.expectedEarnings = expectedEarnings;
     }
 
+    public BigDecimal getItCommune() {
+        return itCommune;
+    }
+
+    public void setItCommune(BigDecimal itCommune) {
+        this.itCommune = itCommune;
+    }
+
+    public LocalDateTime getExpirationDate() {
+        return expirationDate;
+    }
+
+    public void setExpirationDate(LocalDateTime expirationDate) {
+        this.expirationDate = expirationDate;
+    }
+
+    public LocalDateTime getCreatedDate() {
+        return createdDate;
+    }
+
+    public void setCreatedDate(LocalDateTime createdDate) {
+        this.createdDate = createdDate;
+    }
+
     @Override
     public String toString() {
         return "ProjectUserV{" +
@@ -160,6 +198,9 @@ public class ProjectUserV implements Serializable {
         ", status=" + status +
         ", money=" + money +
         ", expectedEarnings=" + expectedEarnings +
+        ", itCommune=" + itCommune +
+        ", expirationDate=" + expirationDate +
+        ", createdDate=" + createdDate +
         "}";
     }
 }

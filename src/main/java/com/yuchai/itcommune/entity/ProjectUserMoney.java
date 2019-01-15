@@ -1,6 +1,8 @@
 package com.yuchai.itcommune.entity;
 
+import java.math.BigDecimal;
 import com.baomidou.mybatisplus.annotation.IdType;
+import java.time.LocalDateTime;
 import com.baomidou.mybatisplus.annotation.TableId;
 import java.io.Serializable;
 
@@ -10,7 +12,7 @@ import java.io.Serializable;
  * </p>
  *
  * @author Haven
- * @since 2019-01-04
+ * @since 2019-01-15
  */
 public class ProjectUserMoney implements Serializable {
 
@@ -67,6 +69,18 @@ public class ProjectUserMoney implements Serializable {
      * 是否已经退出
      */
     private String quit;
+
+    private BigDecimal itCommune;
+
+    /**
+     * 要求完成时间
+     */
+    private LocalDateTime expirationDate;
+
+    /**
+     * 创建时间
+     */
+    private LocalDateTime createdDate;
 
 
     public Integer getProjectId() {
@@ -157,6 +171,30 @@ public class ProjectUserMoney implements Serializable {
         this.quit = quit;
     }
 
+    public BigDecimal getItCommune() {
+        return itCommune;
+    }
+
+    public void setItCommune(BigDecimal itCommune) {
+        this.itCommune = itCommune;
+    }
+
+    public LocalDateTime getExpirationDate() {
+        return expirationDate;
+    }
+
+    public void setExpirationDate(LocalDateTime expirationDate) {
+        this.expirationDate = expirationDate;
+    }
+
+    public LocalDateTime getCreatedDate() {
+        return createdDate;
+    }
+
+    public void setCreatedDate(LocalDateTime createdDate) {
+        this.createdDate = createdDate;
+    }
+
     @Override
     public String toString() {
         return "ProjectUserMoney{" +
@@ -171,6 +209,9 @@ public class ProjectUserMoney implements Serializable {
         ", teamDesc=" + teamDesc +
         ", teamLeader=" + teamLeader +
         ", quit=" + quit +
+        ", itCommune=" + itCommune +
+        ", expirationDate=" + expirationDate +
+        ", createdDate=" + createdDate +
         "}";
     }
 }

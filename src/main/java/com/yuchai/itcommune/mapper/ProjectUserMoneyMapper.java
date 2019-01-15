@@ -9,7 +9,7 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  * </p>
  *
  * @author Haven
- * @since 2019-01-04
+ * @since 2019-01-15
  */
 public interface ProjectUserMoneyMapper extends BaseMapper<ProjectUserMoney> {
 

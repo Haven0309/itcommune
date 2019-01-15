@@ -10,10 +10,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -102,6 +99,16 @@ public class ReportDataController {
         List<ProjectUserV> vList = projectUserVService.list(new QueryWrapper<ProjectUserV>().eq("department", department).eq("status","完成"));
         return ResultUtil.genSuccessResult(vList);
     }
+    @ApiOperation("我的部门支出")
+    @GetMapping("/deptMoney/search")
+    public Result deptMoneySearch(@RequestParam String userCode,@RequestParam String startDate,@RequestParam String endDate){
+        String department = userService.getOne(new QueryWrapper<User>().eq("user_code", userCode)).getDepartment();
+        if (department == null) {
+            return ResultUtil.genFailResult("部门信息不正确");
+        }
+        List<ProjectUserV> vList = projectUserVService.list(new QueryWrapper<ProjectUserV>().eq("department", department).eq("status","完成").between("expiration_date",startDate,endDate));
+        return ResultUtil.genSuccessResult(vList);
+    }
 
     @ApiOperation("项目-部门支出情况")
     @GetMapping("/projectDeptMoney")
@@ -109,11 +116,28 @@ public class ReportDataController {
         List<ProjectUserV> list = projectUserVService.list(new QueryWrapper<ProjectUserV>().eq("status","完成").orderByDesc("department"));
         return ResultUtil.genSuccessResult(list);
     }
+    @ApiOperation("项目-部门支出情况")
+    @GetMapping("/projectDeptMoney/search")
+    public Result projectDeptMoneySearch(@RequestParam(required = false) String dept,@RequestParam String startDate,@RequestParam String endDate){
+        List<ProjectUserV> list;
+        if (dept == null) {
+            list = projectUserVService.list(new QueryWrapper<ProjectUserV>().eq("status","完成").between("expiration_date",startDate,endDate).orderByDesc("department"));
+            return ResultUtil.genSuccessResult(list);
+        }
+        list = projectUserVService.list(new QueryWrapper<ProjectUserV>().eq("status","完成").like("department",dept).between("expiration_date",startDate,endDate).orderByDesc("department"));
+        return ResultUtil.genSuccessResult(list);
+    }
 
     @ApiOperation("项目-人员收入情况")
     @GetMapping("/projectUserMoney")
     public Result projectUserMoney(){
         List<ProjectUserMoney> list = projectUserMoneyService.list(new QueryWrapper<ProjectUserMoney>().ne("quit","2").ne("salary","0").isNotNull("salary"));
+        return ResultUtil.genSuccessResult(list);
+    }
+    @ApiOperation("项目-人员收入情况")
+    @GetMapping("/projectUserMoney/search")
+    public Result projectUserMoneySearch(@RequestParam String startDate,@RequestParam String endDate){
+        List<ProjectUserMoney> list = projectUserMoneyService.list(new QueryWrapper<ProjectUserMoney>().ne("quit","2").ne("salary","0").isNotNull("salary").between("expiration_date",startDate,endDate));
         return ResultUtil.genSuccessResult(list);
     }
 }

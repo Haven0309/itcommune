@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
  * </p>
  *
  * @author Haven
- * @since 2019-01-04
+ * @since 2019-01-15
  */
 @Service
 public class ProjectUserMoneyServiceImpl extends ServiceImpl<ProjectUserMoneyMapper, ProjectUserMoney> implements ProjectUserMoneyService {

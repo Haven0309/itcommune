@@ -38,6 +38,7 @@ public class ProcessController {
     @ApiOperation("保存更新流程信息到数据库")
     @PostMapping("/saveOrUpdate")
     public Result saveOrUpdate(@RequestBody Process process){
+        process.setProcessTitle("【IT公社】"+process.getProcessTitle());
         boolean b = processService.saveOrUpdate(process);
         if (!b) {
             return ResultUtil.genFailResult("数据库插入流程信息失败");
