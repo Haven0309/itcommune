@@ -43,7 +43,7 @@ eureka:
     prefer-ip-address: true
   client:
     service-url:
-      defaultZone: http://eureka:eureka@172.16.161.53:30001/eureka/,http://eureka:eureka@172.16.161.53:30002/eureka/
+      defaultZone: http://eureka:eureka@infra-eureka1.infrastructure:8080/eureka/,http://eureka:eureka@infra-eureka2.infrastructure:8080/eureka/
 
 mybatis-plus:
   mapper-locations: classpath:/com/yuchai/*/mapper/xml/*Mapper.xml
