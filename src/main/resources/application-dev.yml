@@ -15,14 +15,6 @@ spring:
           password: portal
           url: jdbc:oracle:thin:@172.16.90.66:1521/dbtst
           driver-class-name: oracle.jdbc.driver.OracleDriver
-eureka:
-  instance:
-    instance-id: it-commune-service
-    prefer-ip-address: true
-  client:
-    service-url:
-      defaultZone: http://eureka:eureka@infra-eureka1.infrastructure:8080/eureka/,http://eureka:eureka@infra-eureka2.infrastructure:8080/eureka/
-
   swagger:
     # 扫描的包路径,默认扫描所有
     base-package: com.yuchai.itcommune
@@ -36,7 +28,6 @@ eureka:
     contact:
       name: haven
 
-
   #附件上传静态资源访问配置
   mvc:
     static-path-pattern: /**
@@ -46,6 +37,13 @@ eureka:
     multipart:
       location: /usr/springboot/
       #location: C://Users//Haven//workspace//
+eureka:
+  instance:
+    instance-id: it-commune-service
+    prefer-ip-address: true
+  client:
+    service-url:
+      defaultZone: http://eureka:eureka@infra-eureka1.infrastructure:8080/eureka/,http://eureka:eureka@infra-eureka2.infrastructure:8080/eureka/
 
 mybatis-plus:
   mapper-locations: classpath:/com/yuchai/*/mapper/xml/*Mapper.xml
