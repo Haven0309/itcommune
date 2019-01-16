@@ -44,7 +44,6 @@ eureka:
   client:
     service-url:
       defaultZone: http://eureka:eureka@infra-eureka1.infrastructure:8080/eureka/,http://eureka:eureka@infra-eureka2.infrastructure:8080/eureka/
-
 mybatis-plus:
   mapper-locations: classpath:/com/yuchai/*/mapper/xml/*Mapper.xml
 #  configuration:
@@ -52,3 +51,8 @@ mybatis-plus:
 
 itcommune:
   form-url: http://172.16.90.68:7777/commune/#/flow/
+management:
+  endpoint:
+    web:
+      exposure:
+        include: '*'
