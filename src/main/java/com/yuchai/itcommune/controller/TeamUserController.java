@@ -93,8 +93,9 @@ public class TeamUserController {
 
     @ApiOperation("获取用户信息")
     @GetMapping("/get/{userCode}")
-    public List<TeamUser> getTeamUser(@PathVariable String userCode){
-        return teamUserService.list(new QueryWrapper<TeamUser>().eq("user_code", userCode));
+    public Result getTeamUser(@PathVariable String userCode){
+        List<TeamUser> list = teamUserService.list(new QueryWrapper<TeamUser>().eq("user_code", userCode));
+        return ResultUtil.genSuccessResult(list);
     }
     /**
      * 获取一个用户的结算数据

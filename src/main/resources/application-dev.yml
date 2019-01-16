@@ -1,4 +1,6 @@
 spring:
+  application:
+    name: it-commune-service
   datasource:
     dynamic:
       primary: mysql #设置默认的数据源或者数据源组,默认值即为master
@@ -13,6 +15,14 @@ spring:
           password: portal
           url: jdbc:oracle:thin:@172.16.90.66:1521/dbtst
           driver-class-name: oracle.jdbc.driver.OracleDriver
+eureka:
+  instance:
+    instance-id: it-commune-service
+    prefer-ip-address: true
+  client:
+    service-url:
+      defaultZone: http://eureka:eureka@infra-eureka1.infrastructure:8080/eureka/,http://eureka:eureka@infra-eureka2.infrastructure:8080/eureka/
+
   swagger:
     # 扫描的包路径,默认扫描所有
     base-package: com.yuchai.itcommune
