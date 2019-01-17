@@ -56,4 +56,6 @@ mybatis-plus:
 
 itcommune:
   form-url: http://172.16.90.68:7777/it-commune-pc/#/flow/
-
+feign:
+  hystrix:
+    enabled: true
