@@ -147,7 +147,7 @@ public class FlowableController {
         process.setCreatedTime(LocalDateTime.now());
         process.setFormUrl("www.baidu.com");
         process.setInstanceId(instanceId);
-        process.setProcessTitle(title);
+        process.setProcessTitle("【IT公社】"+title);
         process.setProjectId(Integer.valueOf(projectId));
         process.setCurrentNode("申请部门正职审批");
         process.setCurrentNodeId("t2");
@@ -584,6 +584,10 @@ public class FlowableController {
         process.setCurrentNode("终止");
         process.setCurrentNodeId("t10");
         processService.saveOrUpdate(process);
+        Project project = new Project();
+        project.setId(process.getProjectId());
+        project.setStatus("终止");
+        projectService.updateById(project);
         return ResultUtil.genSuccessResult("流程已经终止");
     }
 

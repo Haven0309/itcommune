@@ -3,10 +3,7 @@ package com.yuchai.itcommune.controller;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.yuchai.itcommune.entity.*;
-import com.yuchai.itcommune.service.EvaluationService;
-import com.yuchai.itcommune.service.ProjectService;
-import com.yuchai.itcommune.service.TeamUserService;
-import com.yuchai.itcommune.service.TeamsService;
+import com.yuchai.itcommune.service.*;
 import com.yuchai.itcommune.util.Result;
 import com.yuchai.itcommune.util.ResultUtil;
 import com.yuchai.itcommune.vo.ProjectSalaryVO;
@@ -41,7 +38,7 @@ public class TeamUserController {
     @Autowired
     private ProjectService projectService;
     @Autowired
-    private EvaluationService evaluationService;
+    private WxWorkService wxWorkService;
 
     /**
      * 加入团队
@@ -62,7 +59,9 @@ public class TeamUserController {
             List<TeamUser> list = teamUserService.list(new QueryWrapper<TeamUser>().eq("team_id", teamId).eq("user_code", userCode));
             if (list.size() == 0) {
                 boolean b = teamUserService.saveOrUpdate(teamUser);
-                return ResultUtil.genSuccessResult(b);
+                //TODO 发送企业微信通知
+                String cardMsg = wxWorkService.sendTextCardMsg(teamUser.getUserCode(), "【IT公社】你加入了新的团队", "你加入了新的团队，请登录IT公社进行查看。", "#", 1000013);
+                return ResultUtil.genSuccessResult(cardMsg);
             }
         }else {
             boolean b = teamUserService.saveOrUpdate(teamUser);

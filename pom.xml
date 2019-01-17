@@ -9,11 +9,11 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.yuchai</groupId>
-    <artifactId>itcommune</artifactId>
+    <artifactId>it-commune-service</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>jar</packaging>
-    <name>itcommune</name>
-    <description>Demo project for Spring Boot</description>
+    <name>it-commune-service</name>
+    <description>it-commune-service project for Spring Boot</description>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -26,6 +26,10 @@
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-openfeign</artifactId>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -112,7 +116,6 @@
         </dependencies>
     </dependencyManagement>
     <build>
-        <!--<finalName>itcommune</finalName>-->
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>

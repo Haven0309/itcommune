@@ -55,7 +55,7 @@ public class ProjectController {
     /**
      * 创建项目
      *
-     * @param project
+     * @param projectVO
      * @return
      */
     @ApiOperation("创建项目")

@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/itcommune.iml" filepath="$PROJECT_DIR$/itcommune.iml" />
+      <module fileurl="file://$PROJECT_DIR$/it-commune-service.iml" filepath="$PROJECT_DIR$/it-commune-service.iml" />
     </modules>
   </component>
 </project>
