@@ -1,6 +1,5 @@
 package com.yuchai.itcommune.entity;
 
-import java.math.BigDecimal;
 import com.baomidou.mybatisplus.annotation.IdType;
 import java.time.LocalDateTime;
 import com.baomidou.mybatisplus.annotation.TableId;
@@ -12,7 +11,7 @@ import java.io.Serializable;
  * </p>
  *
  * @author Haven
- * @since 2019-01-15
+ * @since 2019-01-17
  */
 public class ProjectUserMoney implements Serializable {
 
@@ -70,7 +69,7 @@ public class ProjectUserMoney implements Serializable {
      */
     private String quit;
 
-    private BigDecimal itCommune;
+    private LocalDateTime createdDate;
 
     /**
      * 要求完成时间
@@ -80,7 +79,12 @@ public class ProjectUserMoney implements Serializable {
     /**
      * 创建时间
      */
-    private LocalDateTime createdDate;
+    private LocalDateTime pCreatedDate;
+
+    /**
+     * 部门
+     */
+    private String department;
 
 
     public Integer getProjectId() {
@@ -171,12 +175,12 @@ public class ProjectUserMoney implements Serializable {
         this.quit = quit;
     }
 
-    public BigDecimal getItCommune() {
-        return itCommune;
+    public LocalDateTime getCreatedDate() {
+        return createdDate;
     }
 
-    public void setItCommune(BigDecimal itCommune) {
-        this.itCommune = itCommune;
+    public void setCreatedDate(LocalDateTime createdDate) {
+        this.createdDate = createdDate;
     }
 
     public LocalDateTime getExpirationDate() {
@@ -187,12 +191,20 @@ public class ProjectUserMoney implements Serializable {
         this.expirationDate = expirationDate;
     }
 
-    public LocalDateTime getCreatedDate() {
-        return createdDate;
+    public LocalDateTime getpCreatedDate() {
+        return pCreatedDate;
     }
 
-    public void setCreatedDate(LocalDateTime createdDate) {
-        this.createdDate = createdDate;
+    public void setpCreatedDate(LocalDateTime pCreatedDate) {
+        this.pCreatedDate = pCreatedDate;
+    }
+
+    public String getDepartment() {
+        return department;
+    }
+
+    public void setDepartment(String department) {
+        this.department = department;
     }
 
     @Override
@@ -209,9 +221,10 @@ public class ProjectUserMoney implements Serializable {
         ", teamDesc=" + teamDesc +
         ", teamLeader=" + teamLeader +
         ", quit=" + quit +
-        ", itCommune=" + itCommune +
-        ", expirationDate=" + expirationDate +
         ", createdDate=" + createdDate +
+        ", expirationDate=" + expirationDate +
+        ", pCreatedDate=" + pCreatedDate +
+        ", department=" + department +
         "}";
     }
 }

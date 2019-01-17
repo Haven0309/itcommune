@@ -557,6 +557,38 @@ public class FlowableController {
 
         return ResultUtil.genSuccessResult();
     }
+    /**
+     * 跳转流程
+     */
+    @ApiOperation("跳转流程到起草")
+    @ApiImplicitParam(name="instanceId",value = "流程instanceID",required = true)
+    @ResponseBody
+    @RequestMapping(value = "moveActivity")
+    public Result moveActivity(String instanceId) {
+        ProcessInstance pi = runtimeService.createProcessInstanceQuery().processInstanceId(instanceId).singleResult();
+        BpmnModel bpmnModel = repositoryService.getBpmnModel(pi.getProcessDefinitionId());
+        org.flowable.bpmn.model.Process processEn = bpmnModel.getProcesses().get(0);
+
+        Task task = taskService.createTaskQuery().processInstanceId(pi.getId()).singleResult();
+
+        String id = runtimeService.getActiveActivityIds(task.getExecutionId()).get(0);
+        FlowElement currentFlowElement = processEn.getFlowElement(id);
+        String currentActivityId = currentFlowElement.getId();
+        runtimeService.createChangeActivityStateBuilder()
+                .processInstanceId(instanceId).moveActivityIdTo(currentActivityId,"t1")
+                .changeState();
+        //更新流程信息
+        Process process = processService.getOne(new QueryWrapper<Process>().eq("instance_id",instanceId));
+//        process.setAssigneeCode(assigneeCode);
+        process.setCurrentNode("起草");
+        process.setCurrentNodeId("t1");
+        processService.saveOrUpdate(process);
+        Project project = new Project();
+        project.setId(process.getProjectId());
+        project.setStatus("进行中");
+        projectService.updateById(project);
+        return ResultUtil.genSuccessResult("流程已经跳转到起草");
+    }
 
     /**
      * 终止流程

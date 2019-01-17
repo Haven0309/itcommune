@@ -15,14 +15,15 @@
         <result column="team_desc" property="teamDesc" />
         <result column="team_leader" property="teamLeader" />
         <result column="quit" property="quit" />
-        <result column="it_commune" property="itCommune" />
-        <result column="expiration_date" property="expirationDate" />
         <result column="created_date" property="createdDate" />
+        <result column="expiration_date" property="expirationDate" />
+        <result column="p_created_date" property="pCreatedDate" />
+        <result column="department" property="department" />
     </resultMap>
 
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
-        project_id, project_name, project_desc, team_id, team_name, user_code, user_name, salary, team_desc, team_leader, quit, it_commune, expiration_date, created_date
+        project_id, project_name, project_desc, team_id, team_name, user_code, user_name, salary, team_desc, team_leader, quit, created_date, expiration_date, p_created_date, department
     </sql>
 
 </mapper>

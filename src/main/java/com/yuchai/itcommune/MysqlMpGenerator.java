@@ -18,7 +18,7 @@ import com.baomidou.mybatisplus.generator.config.rules.NamingStrategy;
 public class MysqlMpGenerator {
 
     public static void main(String[] args) {
-        String outputDir = "D:\\workspace\\itcommune\\src\\main\\java";
+        String outputDir = "D:\\workspace\\it-commune-service\\src\\main\\java";
         String basePackage = "com.yuchai.itcommune";
         String[] tableNames = new String[]{"project_user_money"};
 

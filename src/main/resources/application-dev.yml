@@ -49,6 +49,10 @@ management:
     web:
       exposure:
         include: '*'
+feign:
+  hystrix:
+    enabled: true
+
 mybatis-plus:
   mapper-locations: classpath:/com/yuchai/*/mapper/xml/*Mapper.xml
 #  configuration:
@@ -56,6 +60,3 @@ mybatis-plus:
 
 itcommune:
   form-url: http://172.16.90.68:7777/it-commune-pc/#/flow/
-feign:
-  hystrix:
-    enabled: true

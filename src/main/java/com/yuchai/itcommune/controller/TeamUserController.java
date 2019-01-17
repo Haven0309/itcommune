@@ -105,8 +105,16 @@ public class TeamUserController {
     @ApiOperation("获取一个用户的结算数据")
     @ApiImplicitParam(name="id",value = "用户工号",required = true)
     @GetMapping("/salary/user/{id}")
-    public Result salaryAll(@PathVariable String id){
-        List<TeamUser> teamUserList = teamUserService.list(new QueryWrapper<TeamUser>().eq("user_code", id));
+    public Result salaryAll(@PathVariable String id,
+                            @RequestParam(required = false) String startDate,
+                            @RequestParam(required = false) String endDate){
+        List<TeamUser> teamUserList;
+        if (startDate != null && endDate != null) {
+            teamUserList = teamUserService.list(new QueryWrapper<TeamUser>().eq("user_code", id).between("created_date",startDate,endDate));
+        }else {
+            teamUserList = teamUserService.list(new QueryWrapper<TeamUser>().eq("user_code", id));
+        }
+
         List<ProjectSalaryVO> projectSalaryVOs = new ArrayList<>();
         for (TeamUser teamUser : teamUserList){
             Teams team = teamsService.getById(teamUser.getTeamId());
