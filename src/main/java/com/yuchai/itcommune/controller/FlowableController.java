@@ -163,7 +163,7 @@ public class FlowableController {
         bpmVirtualTodo.setAssignee(assigneeCode);
         bpmVirtualTodo.setAssigneddate(LocalDateTime.now());
         bpmVirtualTodo.setActivityLabel("申请部门正职审批");
-        bpmVirtualTodo.setTitle(title);
+        bpmVirtualTodo.setTitle("【IT公社】"+title);
         bpmVirtualTodo.setInstanceId(instanceId);
         bpmVirtualTodo.setFormurl(formUrl+instanceId);
         bpmVirtualTodoListController.saveOrUpdate(bpmVirtualTodo);
