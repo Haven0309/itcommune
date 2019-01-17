@@ -2,18 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="42ff02d9-62da-4bda-b67b-da4e005e753e" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/yuchai/itcommune/service/WxWorkService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/itcommune.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/yuchai/itcommune/ItcommuneApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/yuchai/itcommune/ItcommuneApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/yuchai/itcommune/controller/FlowableController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/yuchai/itcommune/controller/FlowableController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/yuchai/itcommune/controller/ProjectController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/yuchai/itcommune/controller/ProjectController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/yuchai/itcommune/controller/TeamUserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/yuchai/itcommune/controller/TeamUserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application-dev.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application-dev.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application-prod.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application-prod.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/yuchai/itcommune/service/WxWorkService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/yuchai/itcommune/service/WxWorkService.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -37,11 +26,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="WxWorkService.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="WxWorkService.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/yuchai/itcommune/service/WxWorkService.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="380">
-              <caret line="20" column="67" selection-start-line="20" selection-start-column="60" selection-end-line="20" selection-end-column="67" />
+            <state relative-caret-position="323">
+              <caret line="17" column="71" lean-forward="true" selection-start-line="17" selection-start-column="71" selection-end-line="17" selection-end-column="71" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -58,11 +47,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="TeamUserController.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="TeamUserController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/yuchai/itcommune/controller/TeamUserController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="538">
-              <caret line="63" column="60" lean-forward="true" selection-start-line="63" selection-start-column="60" selection-end-line="63" selection-end-column="60" />
+            <state relative-caret-position="348">
+              <caret line="62" column="55" selection-start-line="62" selection-start-column="55" selection-end-line="62" selection-end-column="55" />
             </state>
           </provider>
         </entry>
@@ -70,8 +59,8 @@
       <file leaf-file-name="FlowableController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/yuchai/itcommune/controller/FlowableController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="597">
-              <caret line="589" column="43" selection-start-line="589" selection-start-column="43" selection-end-line="589" selection-end-column="43" />
+            <state relative-caret-position="19">
+              <caret line="128" column="43" lean-forward="true" selection-start-line="128" selection-start-column="43" selection-end-line="128" selection-end-column="43" />
             </state>
           </provider>
         </entry>
@@ -155,11 +144,11 @@
         <option value="$PROJECT_DIR$/src/main/resources/application-dev.yml" />
         <option value="$PROJECT_DIR$/src/main/resources/application-prod.yml" />
         <option value="$PROJECT_DIR$/src/main/java/com/yuchai/itcommune/controller/ProjectController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/yuchai/itcommune/controller/FlowableController.java" />
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/src/main/java/com/yuchai/itcommune/ItcommuneApplication.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/yuchai/itcommune/service/WxWorkService.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/yuchai/itcommune/controller/TeamUserController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/yuchai/itcommune/controller/FlowableController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/yuchai/itcommune/service/WxWorkService.java" />
       </list>
     </option>
   </component>
@@ -458,7 +447,7 @@
       <workItem from="1547175791997" duration="18556000" />
       <workItem from="1547532779553" duration="16916000" />
       <workItem from="1547617796227" duration="4627000" />
-      <workItem from="1547687830294" duration="4012000" />
+      <workItem from="1547687830294" duration="5138000" />
     </task>
     <task id="LOCAL-00001" summary="增加附件上传功能">
       <created>1545619100499</created>
@@ -478,7 +467,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="192009000" />
+    <option name="totallyTimeSpent" value="193135000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -506,6 +495,7 @@
       <window_info id="UI Designer" order="4" />
       <window_info anchor="bottom" id="Debug" order="4" weight="0.33369684" />
       <window_info anchor="bottom" id="TODO" order="7" weight="0.3293348" />
+      <window_info anchor="bottom" id="Messages" order="11" weight="0.32388222" />
       <window_info anchor="right" id="Palette&#9;" order="6" />
       <window_info id="Image Layers" order="3" />
       <window_info anchor="bottom" id="Java Enterprise" order="12" />
@@ -513,8 +503,8 @@
       <window_info anchor="bottom" id="Version Control" order="14" weight="0.3289256" />
       <window_info anchor="bottom" id="Run" order="3" weight="0.39040348" />
       <window_info anchor="bottom" id="Spring" order="8" />
-      <window_info anchor="bottom" id="Terminal" order="9" visible="true" weight="0.17230098" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49538866" visible="true" weight="0.22707888" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="9" visible="true" weight="0.17230098" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49538866" visible="true" weight="0.22707888" />
       <window_info anchor="bottom" id="Problems" order="0" />
       <window_info anchor="right" id="Bean Validation" order="8" />
       <window_info id="Web" order="6" side_tool="true" />
@@ -523,7 +513,6 @@
       <window_info anchor="bottom" id="Inspection" order="6" weight="0.4" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="5" weight="0.25" />
-      <window_info anchor="bottom" id="Messages" order="11" weight="0.32388222" />
       <window_info anchor="bottom" id="Message" order="1" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Find" order="2" />
@@ -872,13 +861,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/yuchai/itcommune/controller/FlowableController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="597">
-          <caret line="589" column="43" selection-start-line="589" selection-start-column="43" selection-end-line="589" selection-end-column="43" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/yuchai/itcommune/controller/ProjectController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1569">
@@ -914,16 +896,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/yuchai/itcommune/service/WxWorkService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="380">
-          <caret line="20" column="67" selection-start-line="20" selection-start-column="60" selection-end-line="20" selection-end-column="67" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/application-dev.yml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1083">
@@ -931,10 +903,27 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/yuchai/itcommune/controller/FlowableController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="19">
+          <caret line="128" column="43" lean-forward="true" selection-start-line="128" selection-start-column="43" selection-end-line="128" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/yuchai/itcommune/controller/TeamUserController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="538">
-          <caret line="63" column="60" lean-forward="true" selection-start-line="63" selection-start-column="60" selection-end-line="63" selection-end-column="60" />
+        <state relative-caret-position="348">
+          <caret line="62" column="55" selection-start-line="62" selection-start-column="55" selection-end-line="62" selection-end-column="55" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/yuchai/itcommune/service/WxWorkService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="17" column="71" lean-forward="true" selection-start-line="17" selection-start-column="71" selection-end-line="17" selection-end-column="71" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

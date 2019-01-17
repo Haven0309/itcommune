@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 public interface WxWorkService {
 
     @RequestMapping(value = "/wxwork/{agentId}/sendTextCardMsg",method = RequestMethod.POST)
-    String sendTextCardMsg(@RequestParam(value = "touser") String toUser,
+    String sendTextCardMsg(@RequestParam(value = "toUser") String toUser,
                            @RequestParam(value = "title") String title,
                            @RequestParam(value = "description") String description,
                            @RequestParam(value = "url") String url,
