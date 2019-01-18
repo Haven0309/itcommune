@@ -586,6 +586,10 @@ public class FlowableController {
 //        process.setAssigneeCode(assigneeCode);
         process.setCurrentNode("发布人填写");
         process.setCurrentNodeId("t1");
+        process.setNextNode("申请部门正职审批");
+        process.setNextNodeId("t2");
+        process.setAssigneeCode(ass);
+        process.setAssigneeName(this.getUser(ass));
         processService.saveOrUpdate(process);
         Project project = new Project();
         project.setId(process.getProjectId());
@@ -609,7 +613,7 @@ public class FlowableController {
         history.setAssigneeCode(two.getAssignee());
         history.setAssigneeName(getUser(two.getAssignee()));
         history.setInstanceId(instanceId);
-        history.setStepName("发布人填写");
+        history.setStepName("开放接单");
         history.setStepId("t1");
         history.setCreatedTime(LocalDateTime.now());
         processHistoryService.saveOrUpdate(history);
