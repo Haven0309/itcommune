@@ -407,16 +407,12 @@ public class FlowableController {
 
     private void updateBPMTodo(String instanceId, String assigneeCode, FlowElement nextFlowElement) {
         BpmVirtualTodoList bpmVirtualTodo = new BpmVirtualTodoList();
-//        bpmVirtualTodo.setCreateTime(LocalDateTime.now());
-//        bpmVirtualTodo.setCreatorName(this.getUser(createdBy).getUserName());
         bpmVirtualTodo.setAssignee(assigneeCode);
         bpmVirtualTodo.setAssigneddate(LocalDateTime.now());
         if (nextFlowElement != null){
             bpmVirtualTodo.setActivityLabel(nextFlowElement.getName());
         }
-//        bpmVirtualTodo.setTitle(title);
         bpmVirtualTodo.setInstanceId(instanceId);
-//        bpmVirtualTodo.setFormurl(formUrl+instanceId);
         bpmVirtualTodoListController.saveOrUpdate(bpmVirtualTodo);
     }
 
@@ -567,27 +563,59 @@ public class FlowableController {
     public Result moveActivity(String instanceId) {
         ProcessInstance pi = runtimeService.createProcessInstanceQuery().processInstanceId(instanceId).singleResult();
         BpmnModel bpmnModel = repositoryService.getBpmnModel(pi.getProcessDefinitionId());
-        org.flowable.bpmn.model.Process processEn = bpmnModel.getProcesses().get(0);
-
         Task task = taskService.createTaskQuery().processInstanceId(pi.getId()).singleResult();
+        String currentActivityId = runtimeService.getActiveActivityIds(task.getExecutionId()).get(0);
 
-        String id = runtimeService.getActiveActivityIds(task.getExecutionId()).get(0);
-        FlowElement currentFlowElement = processEn.getFlowElement(id);
-        String currentActivityId = currentFlowElement.getId();
+        //执行退回操作
         runtimeService.createChangeActivityStateBuilder()
                 .processInstanceId(instanceId).moveActivityIdTo(currentActivityId,"t1")
                 .changeState();
+
+        //设置退回人
+        ActHiActinst one = actHiActinstService.getOne(new QueryWrapper<ActHiActinst>().eq("PROC_INST_ID_", instanceId).eq("ACT_ID_", "t1"));
+        task = taskService.createTaskQuery().processInstanceId(pi.getId()).singleResult();
+        String ass = one.getAssignee();
+        if(ass == null){
+            ass = actHiProcinstService.getOne(new QueryWrapper<ActHiProcinst>().eq("PROC_INST_ID_", instanceId)).getStartUserId();
+            taskService.delegateTask(task.getId(), ass);
+        }else{
+            taskService.delegateTask(task.getId(), ass);
+        }
         //更新流程信息
         Process process = processService.getOne(new QueryWrapper<Process>().eq("instance_id",instanceId));
 //        process.setAssigneeCode(assigneeCode);
-        process.setCurrentNode("起草");
+        process.setCurrentNode("发布人填写");
         process.setCurrentNodeId("t1");
         processService.saveOrUpdate(process);
         Project project = new Project();
         project.setId(process.getProjectId());
         project.setStatus("维护中");
         projectService.updateById(project);
-        return ResultUtil.genSuccessResult("流程已经跳转到起草");
+
+        //更新玉柴云虚拟待办表中待办数据
+        BpmVirtualTodoList bpmVirtualTodo = new BpmVirtualTodoList();
+        bpmVirtualTodo.setAssignee(ass);
+        bpmVirtualTodo.setAssigneddate(LocalDateTime.now());
+        bpmVirtualTodo.setActivityLabel("发布人填写");
+        bpmVirtualTodo.setInstanceId(instanceId);
+        bpmVirtualTodoListController.saveOrUpdate(bpmVirtualTodo);
+
+
+        //更新流程历史
+        ActHiActinst two = actHiActinstService.getOne(new QueryWrapper<ActHiActinst>().eq("PROC_INST_ID_", instanceId).eq("ACT_ID_", currentActivityId));
+        ProcessHistory history = new ProcessHistory();
+        history.setApprovalOpinion("维护");
+        history.setApprovalType("退回");
+        history.setAssigneeCode(two.getAssignee());
+        history.setAssigneeName(getUser(two.getAssignee()));
+        history.setInstanceId(instanceId);
+        history.setStepName("发布人填写");
+        history.setStepId("t1");
+        history.setCreatedTime(LocalDateTime.now());
+        processHistoryService.saveOrUpdate(history);
+
+        return ResultUtil.genSuccessResult("操作成功");
+
     }
 
     /**
