@@ -585,7 +585,7 @@ public class FlowableController {
         processService.saveOrUpdate(process);
         Project project = new Project();
         project.setId(process.getProjectId());
-        project.setStatus("进行中");
+        project.setStatus("维护中");
         projectService.updateById(project);
         return ResultUtil.genSuccessResult("流程已经跳转到起草");
     }
