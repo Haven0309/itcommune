@@ -139,9 +139,9 @@ public class ReportDataController {
     public Result projectUserMoneySearch(@RequestBody Map<String,Object> map,@PathVariable String startDate,@PathVariable String endDate){
         List<ProjectUserMoney> list;
         if (startDate == null && endDate == null) {
-            list = projectUserMoneyService.list(new QueryWrapper<ProjectUserMoney>().allEq(map,false));
+            list = projectUserMoneyService.list(new QueryWrapper<ProjectUserMoney>().allEq(map,false).isNotNull("salary"));
         }else {
-            list = projectUserMoneyService.list(new QueryWrapper<ProjectUserMoney>().allEq(map,false).between("p_created_date",startDate,endDate));
+            list = projectUserMoneyService.list(new QueryWrapper<ProjectUserMoney>().allEq(map,false).between("p_created_date",startDate,endDate).isNotNull("salary"));
         }
 //        List<ProjectUserMoney> list = projectUserMoneyService.list(new QueryWrapper<ProjectUserMoney>().ne("quit","2").ne("salary","0").isNotNull("salary").between("expiration_date",startDate,endDate));
         return ResultUtil.genSuccessResult(list);
