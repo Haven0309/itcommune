@@ -79,7 +79,6 @@ public class TeamUserController {
     @ApiOperation("更新团队成员信息-分钱")
     @PostMapping("/usersUpdate")
     public Result usersUpdate(@RequestBody TeamsVO teamsVO){
-
         for (TeamUser teamUser:teamsVO.getTeamUsers()) {
             teamUserService.saveOrUpdate(teamUser);
         }
