@@ -141,9 +141,8 @@ public class ReportDataController {
         if (startDate == null && endDate == null) {
             list = projectUserMoneyService.list(new QueryWrapper<ProjectUserMoney>().allEq(map,false));
         }else {
-            list = projectUserMoneyService.list(new QueryWrapper<ProjectUserMoney>().allEq(map,false).between("expiration_date",startDate,endDate));
+            list = projectUserMoneyService.list(new QueryWrapper<ProjectUserMoney>().allEq(map,false).between("p_created_date",startDate,endDate));
         }
-
 //        List<ProjectUserMoney> list = projectUserMoneyService.list(new QueryWrapper<ProjectUserMoney>().ne("quit","2").ne("salary","0").isNotNull("salary").between("expiration_date",startDate,endDate));
         return ResultUtil.genSuccessResult(list);
     }
