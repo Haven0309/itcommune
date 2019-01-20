@@ -135,9 +135,16 @@ public class ReportDataController {
         return ResultUtil.genSuccessResult(list);
     }
     @ApiOperation("项目-人员收入情况")
-    @GetMapping("/projectUserMoney/search")
-    public Result projectUserMoneySearch(@RequestParam String startDate,@RequestParam String endDate){
-        List<ProjectUserMoney> list = projectUserMoneyService.list(new QueryWrapper<ProjectUserMoney>().ne("quit","2").ne("salary","0").isNotNull("salary").between("expiration_date",startDate,endDate));
+    @PostMapping("/projectUserMoney/search/{startDate}/{endDate}")
+    public Result projectUserMoneySearch(@RequestBody Map<String,Object> map,@PathVariable String startDate,@PathVariable String endDate){
+        List<ProjectUserMoney> list;
+        if (startDate == null && endDate == null) {
+            list = projectUserMoneyService.list(new QueryWrapper<ProjectUserMoney>().allEq(map,false));
+        }else {
+            list = projectUserMoneyService.list(new QueryWrapper<ProjectUserMoney>().allEq(map,false).between("expiration_date",startDate,endDate));
+        }
+
+//        List<ProjectUserMoney> list = projectUserMoneyService.list(new QueryWrapper<ProjectUserMoney>().ne("quit","2").ne("salary","0").isNotNull("salary").between("expiration_date",startDate,endDate));
         return ResultUtil.genSuccessResult(list);
     }
 }
