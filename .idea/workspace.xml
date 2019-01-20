@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="42ff02d9-62da-4bda-b67b-da4e005e753e" name="Default" comment="增加附件上传功能">
+    <list default="true" id="42ff02d9-62da-4bda-b67b-da4e005e753e" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application-dev.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application-dev.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/yuchai/itcommune/controller/TeamUserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/yuchai/itcommune/controller/TeamUserController.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -19,20 +18,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="pom.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/pom.xml">
+      <file leaf-file-name="TeamUserController.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/yuchai/itcommune/controller/TeamUserController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="285">
-              <caret line="15" column="60" selection-start-line="15" selection-start-column="60" selection-end-line="15" selection-end-column="60" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="application-dev.yml" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/application-dev.yml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="399">
-              <caret line="45" column="75" lean-forward="true" selection-start-line="45" selection-start-column="75" selection-end-line="45" selection-end-column="75" />
+            <state relative-caret-position="321">
+              <caret line="90" column="31" lean-forward="true" selection-start-line="90" selection-start-column="31" selection-end-line="90" selection-end-column="31" />
             </state>
           </provider>
         </entry>
@@ -45,6 +35,7 @@
         <option value="HTML File" />
         <option value="Aspect" />
         <option value="AnnotationType" />
+        <option value="Interface" />
         <option value="Class" />
       </list>
     </option>
@@ -52,6 +43,7 @@
   <component name="FindInProjectRecents">
     <findStrings>
       <find>getUser</find>
+      <find>部门正职审批</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -60,17 +52,10 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/com/yuchai/itcommune/controller/ProjectUserController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/yuchai/itcommune/mapper/xml/ProcessMapper.xml" />
-        <option value="$PROJECT_DIR$/src/main/java/com/yuchai/itcommune/entity/Process.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/yuchai/itcommune/vo/ProcessVO.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/application.yml" />
         <option value="$PROJECT_DIR$/src/main/java/com/yuchai/itcommune/controller/BpmVirtualTodoListController.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/yuchai/itcommune/entity/BpmVirtualTodoList.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/yuchai/itcommune/entity/SalaryTop.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/application-prod.yml" />
         <option value="$PROJECT_DIR$/src/main/java/com/yuchai/itcommune/controller/FileUploadController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/yuchai/itcommune/controller/ProjectController.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/yuchai/itcommune/controller/TeamsController.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/yuchai/itcommune/config/FlowableConfig.java" />
         <option value="$PROJECT_DIR$/Dockerfile" />
@@ -103,14 +88,21 @@
         <option value="$PROJECT_DIR$/src/main/java/com/yuchai/itcommune/controller/ExcelController.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/yuchai/itcommune/controller/FlowableCommand.java" />
         <option value="$PROJECT_DIR$/src/main/resources/processes/itcommunity.bpmn" />
-        <option value="$PROJECT_DIR$/src/main/java/com/yuchai/itcommune/controller/FlowableController.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/yuchai/itcommune/controller/ProcessController.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/application-prod.yml" />
+        <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/com/yuchai/itcommune/ItcommuneApplication.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/yuchai/itcommune/service/WxWorkService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/yuchai/itcommune/service/impl/WxWorkServiceHystric.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/application-dev.yml" />
+        <option value="$PROJECT_DIR$/src/main/java/com/yuchai/itcommune/controller/FlowableUpdateProcessController.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/yuchai/itcommune/MysqlMpGenerator.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/processes/itcommuneupdateProcess.bpmn" />
+        <option value="$PROJECT_DIR$/src/main/java/com/yuchai/itcommune/controller/UpdateProcessController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/yuchai/itcommune/controller/FlowableController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/yuchai/itcommune/controller/ProjectController.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/yuchai/itcommune/controller/ReportDataController.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/yuchai/itcommune/controller/TeamUserController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/yuchai/itcommune/ItcommuneApplication.java" />
-        <option value="$PROJECT_DIR$/pom.xml" />
-        <option value="$PROJECT_DIR$/src/main/resources/application-dev.yml" />
       </list>
     </option>
   </component>
@@ -139,12 +131,18 @@
       <expand>
         <path>
           <item name="" type="16c1761:MavenProjectsStructure$RootNode" />
-          <item name="itcommune" type="9519ce18:MavenProjectsStructure$ProjectNode" />
+          <item name="it-commune-service" type="9519ce18:MavenProjectsStructure$ProjectNode" />
         </path>
         <path>
           <item name="" type="16c1761:MavenProjectsStructure$RootNode" />
-          <item name="itcommune" type="9519ce18:MavenProjectsStructure$ProjectNode" />
+          <item name="it-commune-service" type="9519ce18:MavenProjectsStructure$ProjectNode" />
           <item name="Dependencies" type="f4be9f2a:MavenProjectsStructure$DependenciesNode" />
+        </path>
+        <path>
+          <item name="" type="16c1761:MavenProjectsStructure$RootNode" />
+          <item name="it-commune-service" type="9519ce18:MavenProjectsStructure$ProjectNode" />
+          <item name="Dependencies" type="f4be9f2a:MavenProjectsStructure$DependenciesNode" />
+          <item name="org.springframework.cloud:spring-cloud-starter-openfeign:2.0.2.RELEASE" type="c0821a7e:MavenProjectsStructure$DependencyNode" />
         </path>
       </expand>
       <select />
@@ -173,41 +171,58 @@
         <subPane>
           <expand>
             <path>
-              <item name="itcommune" type="b2602c69:ProjectViewProjectNode" />
-              <item name="itcommune" type="462c0819:PsiDirectoryNode" />
+              <item name="it-commune-service" type="b2602c69:ProjectViewProjectNode" />
+              <item name="it-commune-service" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="itcommune" type="b2602c69:ProjectViewProjectNode" />
-              <item name="itcommune" type="462c0819:PsiDirectoryNode" />
+              <item name="it-commune-service" type="b2602c69:ProjectViewProjectNode" />
+              <item name="it-commune-service" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="itcommune" type="b2602c69:ProjectViewProjectNode" />
-              <item name="itcommune" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="itcommune" type="b2602c69:ProjectViewProjectNode" />
-              <item name="itcommune" type="462c0819:PsiDirectoryNode" />
+              <item name="it-commune-service" type="b2602c69:ProjectViewProjectNode" />
+              <item name="it-commune-service" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="itcommune" type="b2602c69:ProjectViewProjectNode" />
-              <item name="itcommune" type="462c0819:PsiDirectoryNode" />
+              <item name="it-commune-service" type="b2602c69:ProjectViewProjectNode" />
+              <item name="it-commune-service" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="it-commune-service" type="b2602c69:ProjectViewProjectNode" />
+              <item name="it-commune-service" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="itcommune" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="itcommune" type="b2602c69:ProjectViewProjectNode" />
+              <item name="it-commune-service" type="b2602c69:ProjectViewProjectNode" />
+              <item name="it-commune-service" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="itcommune" type="462c0819:PsiDirectoryNode" />
+              <item name="controller" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="it-commune-service" type="b2602c69:ProjectViewProjectNode" />
+              <item name="it-commune-service" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="resources" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="it-commune-service" type="b2602c69:ProjectViewProjectNode" />
+              <item name="it-commune-service" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="processes" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -225,18 +240,16 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="extract.method.default.visibility" value="private" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../community" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../it-wx-basic-service" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
-    <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
+    <property name="settings.editor.selected.configurable" value="reference.settings.ide.settings.webservices" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="D:\workspace\itcommune\src\main\resources\processes" />
-      <recent name="D:\workspace\itcommune" />
-      <recent name="D:\workspace\itcommune\src\main\java\com\yuchai\itcommune\entity" />
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\workspace\itcommune\src\main\resources\templates" />
       <recent name="D:\workspace\itcommune\src\main\resources" />
-      <recent name="D:\workspace\itcommune\src\main\java\com\yuchai\itcommune\config" />
+      <recent name="D:\workspace\itcommune\.idea" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="com.yuchai.itcommune.entity" />
@@ -245,10 +258,12 @@
       <recent name="com.yuchai.itcommune.aspect" />
       <recent name="com.yuchai.itcommune.annotation" />
     </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="D:\workspace\itcommune\src\main\resources\templates" />
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\workspace\it-commune-service\src\main\resources\processes" />
+      <recent name="D:\workspace\itcommune\src\main\resources\processes" />
+      <recent name="D:\workspace\itcommune" />
+      <recent name="D:\workspace\itcommune\src\main\java\com\yuchai\itcommune\entity" />
       <recent name="D:\workspace\itcommune\src\main\resources" />
-      <recent name="D:\workspace\itcommune\.idea" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -266,7 +281,7 @@
   <component name="RunManager" selected="Spring Boot.ItcommuneApplication">
     <configuration name="MysqlMpGenerator" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.yuchai.itcommune.MysqlMpGenerator" />
-      <module name="itcommune" />
+      <module name="it-commune-service" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <extension name="coverage">
         <pattern>
@@ -295,7 +310,7 @@
       <patterns />
     </configuration>
     <configuration name="ItcommuneApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
-      <module name="itcommune" />
+      <module name="it-commune-service" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.yuchai.itcommune.ItcommuneApplication" />
       <option name="ALTERNATIVE_JRE_PATH" />
       <option name="UPDATE_ACTION_UPDATE_POLICY" value="UpdateClassesAndTriggerFile" />
@@ -400,7 +415,8 @@
       <workItem from="1546993487532" duration="13992000" />
       <workItem from="1547175791997" duration="18556000" />
       <workItem from="1547532779553" duration="16916000" />
-      <workItem from="1547617796227" duration="3211000" />
+      <workItem from="1547617796227" duration="4627000" />
+      <workItem from="1547687830294" duration="39281000" />
     </task>
     <task id="LOCAL-00001" summary="增加附件上传功能">
       <created>1545619100499</created>
@@ -409,11 +425,74 @@
       <option name="project" value="LOCAL" />
       <updated>1545619100499</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="增加eureka">
+      <created>1547621983250</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1547621983250</updated>
+    </task>
+    <task id="LOCAL-00003" summary="增加Feign Hystric熔断">
+      <created>1547705463654</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1547705463654</updated>
+    </task>
+    <task id="LOCAL-00004" summary="修改报表及新增流程跳转接口">
+      <created>1547715133033</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1547715133033</updated>
+    </task>
+    <task id="LOCAL-00005" summary="修改流程跳转到起草接口">
+      <created>1547780381533</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1547780381533</updated>
+    </task>
+    <task id="LOCAL-00006" summary="修改流程跳转到起草接口">
+      <created>1547782669906</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1547782669906</updated>
+    </task>
+    <task id="LOCAL-00007" summary="修改流程跳转到起草接口">
+      <created>1547784697930</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1547784697930</updated>
+    </task>
+    <task id="LOCAL-00008" summary="修改我的结算">
+      <created>1547949460437</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1547949460437</updated>
+    </task>
+    <task id="LOCAL-00009" summary="修改我的结算">
+      <created>1547950751609</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1547950751609</updated>
+    </task>
+    <task id="LOCAL-00010" summary="修改报表bug">
+      <created>1547951986102</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1547951986102</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="184420000" />
+    <option name="totallyTimeSpent" value="227278000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -426,17 +505,16 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="1358" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info anchor="right" id="Palette" order="3" />
       <window_info anchor="bottom" id="Event Log" order="15" side_tool="true" />
-      <window_info anchor="right" id="Maven Projects" order="9" weight="0.20895523" />
+      <window_info anchor="right" id="Maven Projects" order="9" weight="0.19829424" />
       <window_info anchor="bottom" id="Database Changes" order="13" show_stripe_button="false" />
       <window_info id="Capture Tool" order="7" />
       <window_info id="Designer" order="2" />
       <window_info anchor="bottom" id="Docker" order="10" weight="0.47768596" />
       <window_info anchor="right" id="Database" order="5" />
-      <window_info id="Structure" order="1" sideWeight="0.50272626" side_tool="true" weight="0.20095949" />
+      <window_info id="Structure" order="1" sideWeight="0.5046113" side_tool="true" weight="0.22707888" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info id="UI Designer" order="4" />
       <window_info anchor="bottom" id="Debug" order="4" weight="0.33369684" />
@@ -447,10 +525,10 @@
       <window_info anchor="bottom" id="Java Enterprise" order="12" />
       <window_info anchor="right" id="Capture Analysis" order="4" />
       <window_info anchor="bottom" id="Version Control" order="14" weight="0.3289256" />
-      <window_info anchor="bottom" id="Run" order="3" weight="0.39040348" />
+      <window_info anchor="bottom" id="Run" order="3" visible="true" weight="0.2431843" />
       <window_info anchor="bottom" id="Spring" order="8" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="9" visible="true" weight="0.29116684" />
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4972737" visible="true" weight="0.2238806" />
+      <window_info anchor="bottom" id="Terminal" order="9" weight="0.17230098" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49538866" visible="true" weight="0.22707888" />
       <window_info anchor="bottom" id="Problems" order="0" />
       <window_info anchor="right" id="Bean Validation" order="8" />
       <window_info id="Web" order="6" side_tool="true" />
@@ -472,7 +550,13 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="增加附件上传功能" />
-    <option name="LAST_COMMIT_MESSAGE" value="增加附件上传功能" />
+    <MESSAGE value="增加eureka" />
+    <MESSAGE value="增加Feign Hystric熔断" />
+    <MESSAGE value="修改报表及新增流程跳转接口" />
+    <MESSAGE value="修改流程跳转到起草接口" />
+    <MESSAGE value="修改我的结算" />
+    <MESSAGE value="修改报表bug" />
+    <option name="LAST_COMMIT_MESSAGE" value="修改报表bug" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -517,112 +601,6 @@
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="jar://E:/apache-maven-3.5.3/respository/com/auth0/java-jwt/3.4.0/java-jwt-3.4.0.jar!/com/auth0/jwt/JWT.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="304">
-          <caret line="25" column="23" selection-start-line="25" selection-start-column="23" selection-end-line="25" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://E:/apache-maven-3.5.3/respository/com/auth0/java-jwt/3.4.0/java-jwt-3.4.0.jar!/com/auth0/jwt/JWTCreator.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="183">
-          <caret line="56" column="24" selection-start-line="56" selection-start-column="24" selection-end-line="56" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://E:/apache-maven-3.5.3/respository/com/auth0/java-jwt/3.4.0/java-jwt-3.4.0-sources.jar!/com/auth0/jwt/JWT.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="646">
-          <caret line="39" column="37" selection-start-line="39" selection-start-column="37" selection-end-line="39" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://E:/apache-maven-3.5.3/respository/com/auth0/java-jwt/3.4.0/java-jwt-3.4.0-sources.jar!/com/auth0/jwt/JWTCreator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-135">
-          <caret line="293" column="62" lean-forward="true" selection-start-line="293" selection-start-column="57" selection-end-line="293" selection-end-column="66" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://E:/apache-maven-3.5.3/respository/com/auth0/java-jwt/3.4.0/java-jwt-3.4.0-sources.jar!/com/auth0/jwt/interfaces/Claim.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1026">
-          <caret line="58" column="11" selection-start-line="58" selection-start-column="11" selection-end-line="58" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/yuchai/itcommune/util/JwtUtil.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="487">
-          <caret line="59" column="57" lean-forward="true" selection-start-line="59" selection-start-column="57" selection-end-line="59" selection-end-column="57" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/yuchai/itcommune/annotation/ParamNotNull.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/yuchai/itcommune/annotation/UserLoginToken.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="228">
-          <caret line="12" column="36" lean-forward="true" selection-start-line="12" selection-start-column="36" selection-end-line="12" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://E:/apache-maven-3.5.3/respository/org/springframework/spring-webmvc/5.1.3.RELEASE/spring-webmvc-5.1.3.RELEASE.jar!/org/springframework/web/servlet/config/annotation/WebMvcConfigurerAdapter.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="152">
-          <caret line="19" column="22" selection-start-line="19" selection-start-column="22" selection-end-line="19" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://E:/apache-maven-3.5.3/respository/org/springframework/spring-webmvc/5.1.3.RELEASE/spring-webmvc-5.1.3.RELEASE-sources.jar!/org/springframework/web/servlet/config/annotation/WebMvcConfigurerAdapter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="202">
-          <caret line="35" column="48" selection-start-line="35" selection-start-column="32" selection-end-line="35" selection-end-column="48" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://E:/apache-maven-3.5.3/respository/org/springframework/spring-webmvc/5.1.3.RELEASE/spring-webmvc-5.1.3.RELEASE-sources.jar!/org/springframework/web/servlet/config/annotation/InterceptorRegistry.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="297">
-          <caret line="47" column="59" lean-forward="true" selection-start-line="47" selection-start-column="59" selection-end-line="47" selection-end-column="59" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://E:/apache-maven-3.5.3/respository/org/springframework/spring-webmvc/5.1.3.RELEASE/spring-webmvc-5.1.3.RELEASE-sources.jar!/org/springframework/web/servlet/HandlerInterceptor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="183">
-          <caret line="75" column="17" selection-start-line="75" selection-start-column="17" selection-end-line="75" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/yuchai/itcommune/config/InterceptorConfig.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="418">
-          <caret line="22" column="42" lean-forward="true" selection-start-line="22" selection-start-column="42" selection-end-line="22" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/yuchai/itcommune/config/AllControllerAdvice.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="380">
-          <caret line="42" column="57" lean-forward="true" selection-start-line="42" selection-start-column="57" selection-end-line="42" selection-end-column="57" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/yuchai/itcommune/annotation/PassToken.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="228">
-          <caret line="12" column="4" selection-start-line="12" selection-start-column="4" selection-end-line="12" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/yuchai/itcommune/annotation/Log.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="228">
-          <caret line="12" column="36" lean-forward="true" selection-start-line="12" selection-start-column="36" selection-end-line="12" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/yuchai/itcommune/util/ToolUtil.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="551">
@@ -648,9 +626,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="545">
           <caret line="29" column="5" selection-start-line="29" selection-start-column="5" selection-end-line="29" selection-end-column="5" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -730,13 +705,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/yuchai/itcommune/controller/FileUploadController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="540">
-          <caret line="53" column="44" selection-start-line="53" selection-start-column="36" selection-end-line="53" selection-end-column="44" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="285">
@@ -781,34 +749,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/yuchai/itcommune/controller/FlowableController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="760">
-          <caret line="514" column="45" lean-forward="true" selection-start-line="514" selection-start-column="45" selection-end-line="514" selection-end-column="45" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/yuchai/itcommune/controller/ProcessController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="354">
-          <caret line="45" column="45" lean-forward="true" selection-start-line="45" selection-start-column="45" selection-end-line="45" selection-end-column="45" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/yuchai/itcommune/controller/UserController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="608">
           <caret line="47" column="55" lean-forward="true" selection-start-line="47" selection-start-column="55" selection-end-line="47" selection-end-column="55" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/yuchai/itcommune/entity/ProjectUserMoney.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1368">
-          <caret line="72" column="33" selection-start-line="72" selection-start-column="33" selection-end-line="72" selection-end-column="33" />
         </state>
       </provider>
     </entry>
@@ -822,31 +766,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/yuchai/itcommune/MysqlMpGenerator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="418">
-          <caret line="29" column="47" selection-start-line="29" selection-start-column="47" selection-end-line="29" selection-end-column="47" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/yuchai/itcommune/controller/ReportDataController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="549">
-          <caret line="127" column="49" selection-start-line="127" selection-start-column="49" selection-end-line="127" selection-end-column="49" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Dockerfile">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="38">
           <caret line="2" column="43" selection-start-line="2" selection-start-column="16" selection-end-line="2" selection-end-column="43" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/yuchai/itcommune/controller/TeamUserController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="97" column="49" selection-start-line="97" selection-start-column="49" selection-end-line="97" selection-end-column="49" />
         </state>
       </provider>
     </entry>
@@ -857,27 +780,196 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/application-prod.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="266">
+          <caret line="14" column="26" lean-forward="true" selection-start-line="14" selection-start-column="26" selection-end-line="14" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/yuchai/itcommune/ItcommuneApplication.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="76">
-          <caret line="4" selection-start-line="4" selection-end-line="4" />
+        <state relative-caret-position="133">
+          <caret line="10" column="35" lean-forward="true" selection-start-line="10" selection-start-column="35" selection-end-line="10" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://E:/apache-maven-3.5.3/respository/org/springframework/spring-web/5.1.3.RELEASE/spring-web-5.1.3.RELEASE.jar!/org/springframework/web/bind/annotation/RequestParam.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="171">
+          <caret line="17" column="18" selection-start-line="17" selection-start-column="18" selection-end-line="17" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/yuchai/itcommune/controller/TeamsController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="36" column="38" selection-start-line="36" selection-start-column="38" selection-end-line="36" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/yuchai/itcommune/service/impl/WxWorkServiceHystric.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="247">
+          <caret line="13" column="34" lean-forward="true" selection-start-line="13" selection-start-column="34" selection-end-line="13" selection-end-column="34" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/yuchai/itcommune/service/WxWorkService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="247">
+          <caret line="13" column="41" lean-forward="true" selection-start-line="13" selection-start-column="41" selection-end-line="13" selection-end-column="41" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/yuchai/itcommune/service/impl/UserServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="247">
+          <caret line="17" column="13" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="15" column="60" selection-start-line="15" selection-start-column="60" selection-end-line="15" selection-end-column="60" />
+        <state relative-caret-position="228">
+          <caret line="24" column="18" selection-start-line="24" selection-start-column="18" selection-end-line="24" selection-end-column="18" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/application-dev.yml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="399">
-          <caret line="45" column="75" lean-forward="true" selection-start-line="45" selection-start-column="75" selection-end-line="45" selection-end-column="75" />
+        <state relative-caret-position="114">
+          <caret line="24" column="24" lean-forward="true" selection-start-line="24" selection-start-column="24" selection-end-line="24" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/yuchai/itcommune/controller/FlowableUpdateProcessController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="310">
+          <caret line="82" column="38" selection-start-line="82" selection-start-column="38" selection-end-line="82" selection-end-column="38" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/yuchai/itcommune/MysqlMpGenerator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="22" column="65" lean-forward="true" selection-start-line="22" selection-start-column="65" selection-end-line="22" selection-end-column="65" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/processes/itcommuneupdateProcess.bpmn">
+      <provider editor-type-id="com.intellij.jboss.jbpm.chart.editor.BpmnDesignerFileEditorProvider" />
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="76">
+          <caret line="4" column="32" selection-start-line="4" selection-start-column="32" selection-end-line="4" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/yuchai/itcommune/entity/ProjectUserMoney.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1482">
+          <caret line="81" column="38" selection-start-line="81" selection-start-column="26" selection-end-line="81" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/yuchai/itcommune/controller/ProcessController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="753">
+          <caret line="64" column="31" selection-start-line="64" selection-start-column="24" selection-end-line="64" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/yuchai/itcommune/controller/UpdateProcessController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="188">
+          <caret line="320" column="43" lean-forward="true" selection-end-line="361" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/processes/itcommunity.bpmn">
+      <provider editor-type-id="com.intellij.jboss.jbpm.chart.editor.BpmnDesignerFileEditorProvider" />
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="95">
+          <caret line="5" column="36" selection-start-line="5" selection-start-column="28" selection-end-line="5" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/yuchai/itcommune/controller/FlowableController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1132">
+          <caret line="232" column="52" selection-start-line="232" selection-start-column="43" selection-end-line="232" selection-end-column="52" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/yuchai/itcommune/controller/FileUploadController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="540">
+          <caret line="53" column="44" selection-start-line="53" selection-start-column="36" selection-end-line="53" selection-end-column="44" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/yuchai/itcommune/controller/ProjectUploadController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="364">
+          <caret line="31" column="31" lean-forward="true" selection-start-line="31" selection-start-column="31" selection-end-line="31" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/yuchai/itcommune/controller/ProjectController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="528">
+          <caret line="72" column="61" lean-forward="true" selection-start-line="72" selection-start-column="61" selection-end-line="72" selection-end-column="61" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/yuchai/itcommune/entity/TeamUser.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="222">
+          <caret line="15" column="13" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/yuchai/itcommune/vo/TeamsVO.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="317">
+          <caret line="45" column="36" selection-start-line="45" selection-start-column="27" selection-end-line="45" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://E:/apache-maven-3.5.3/respository/com/baomidou/mybatis-plus-core/3.0.6/mybatis-plus-core-3.0.6.jar!/com/baomidou/mybatisplus/core/conditions/interfaces/Compare.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="222">
+          <caret line="72" column="9" selection-start-line="72" selection-start-column="9" selection-end-line="72" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://E:/apache-maven-3.5.3/respository/com/baomidou/mybatis-plus-core/3.0.6/mybatis-plus-core-3.0.6-sources.jar!/com/baomidou/mybatisplus/core/conditions/interfaces/Compare.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2603">
+          <caret line="173" column="28" lean-forward="true" selection-start-line="173" selection-start-column="28" selection-end-line="173" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/yuchai/itcommune/controller/ReportDataController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="649">
+          <caret line="141" column="84" selection-start-line="141" selection-start-column="84" selection-end-line="141" selection-end-column="84" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/yuchai/itcommune/controller/TeamUserController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="321">
+          <caret line="90" column="31" lean-forward="true" selection-start-line="90" selection-start-column="31" selection-end-line="90" selection-end-column="31" />
         </state>
       </provider>
     </entry>

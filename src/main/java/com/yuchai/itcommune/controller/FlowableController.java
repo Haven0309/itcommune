@@ -147,7 +147,7 @@ public class FlowableController {
         process.setCreatedTime(LocalDateTime.now());
         process.setFormUrl("www.baidu.com");
         process.setInstanceId(instanceId);
-        process.setProcessTitle(title);
+        process.setProcessTitle("【IT公社】"+title);
         process.setProjectId(Integer.valueOf(projectId));
         process.setCurrentNode("申请部门正职审批");
         process.setCurrentNodeId("t2");
@@ -163,7 +163,7 @@ public class FlowableController {
         bpmVirtualTodo.setAssignee(assigneeCode);
         bpmVirtualTodo.setAssigneddate(LocalDateTime.now());
         bpmVirtualTodo.setActivityLabel("申请部门正职审批");
-        bpmVirtualTodo.setTitle(title);
+        bpmVirtualTodo.setTitle("【IT公社】"+title);
         bpmVirtualTodo.setInstanceId(instanceId);
         bpmVirtualTodo.setFormurl(formUrl+instanceId);
         bpmVirtualTodoListController.saveOrUpdate(bpmVirtualTodo);
@@ -407,16 +407,12 @@ public class FlowableController {
 
     private void updateBPMTodo(String instanceId, String assigneeCode, FlowElement nextFlowElement) {
         BpmVirtualTodoList bpmVirtualTodo = new BpmVirtualTodoList();
-//        bpmVirtualTodo.setCreateTime(LocalDateTime.now());
-//        bpmVirtualTodo.setCreatorName(this.getUser(createdBy).getUserName());
         bpmVirtualTodo.setAssignee(assigneeCode);
         bpmVirtualTodo.setAssigneddate(LocalDateTime.now());
         if (nextFlowElement != null){
             bpmVirtualTodo.setActivityLabel(nextFlowElement.getName());
         }
-//        bpmVirtualTodo.setTitle(title);
         bpmVirtualTodo.setInstanceId(instanceId);
-//        bpmVirtualTodo.setFormurl(formUrl+instanceId);
         bpmVirtualTodoListController.saveOrUpdate(bpmVirtualTodo);
     }
 
@@ -557,6 +553,74 @@ public class FlowableController {
 
         return ResultUtil.genSuccessResult();
     }
+    /**
+     * 跳转流程
+     */
+    @ApiOperation("跳转流程到起草")
+    @ApiImplicitParam(name="instanceId",value = "流程instanceID",required = true)
+    @ResponseBody
+    @RequestMapping(value = "moveActivity")
+    public Result moveActivity(String instanceId) {
+        ProcessInstance pi = runtimeService.createProcessInstanceQuery().processInstanceId(instanceId).singleResult();
+        BpmnModel bpmnModel = repositoryService.getBpmnModel(pi.getProcessDefinitionId());
+        Task task = taskService.createTaskQuery().processInstanceId(pi.getId()).singleResult();
+        String currentActivityId = runtimeService.getActiveActivityIds(task.getExecutionId()).get(0);
+
+        //执行退回操作
+        runtimeService.createChangeActivityStateBuilder()
+                .processInstanceId(instanceId).moveActivityIdTo(currentActivityId,"t1")
+                .changeState();
+
+        //设置退回人
+        ActHiActinst one = actHiActinstService.getOne(new QueryWrapper<ActHiActinst>().eq("PROC_INST_ID_", instanceId).eq("ACT_ID_", "t1"));
+        task = taskService.createTaskQuery().processInstanceId(pi.getId()).singleResult();
+        String ass = one.getAssignee();
+        if(ass == null){
+            ass = actHiProcinstService.getOne(new QueryWrapper<ActHiProcinst>().eq("PROC_INST_ID_", instanceId)).getStartUserId();
+            taskService.delegateTask(task.getId(), ass);
+        }else{
+            taskService.delegateTask(task.getId(), ass);
+        }
+        //更新流程信息
+        Process process = processService.getOne(new QueryWrapper<Process>().eq("instance_id",instanceId));
+//        process.setAssigneeCode(assigneeCode);
+        process.setCurrentNode("发布人填写");
+        process.setCurrentNodeId("t1");
+        process.setNextNode("申请部门正职审批");
+        process.setNextNodeId("t2");
+        process.setAssigneeCode(ass);
+        process.setAssigneeName(this.getUser(ass));
+        processService.saveOrUpdate(process);
+        Project project = new Project();
+        project.setId(process.getProjectId());
+        project.setStatus("维护中");
+        projectService.updateById(project);
+
+        //更新玉柴云虚拟待办表中待办数据
+        BpmVirtualTodoList bpmVirtualTodo = new BpmVirtualTodoList();
+        bpmVirtualTodo.setAssignee(ass);
+        bpmVirtualTodo.setAssigneddate(LocalDateTime.now());
+        bpmVirtualTodo.setActivityLabel("发布人填写");
+        bpmVirtualTodo.setInstanceId(instanceId);
+        bpmVirtualTodoListController.saveOrUpdate(bpmVirtualTodo);
+
+
+        //更新流程历史
+        ActHiActinst two = actHiActinstService.getOne(new QueryWrapper<ActHiActinst>().eq("PROC_INST_ID_", instanceId).eq("ACT_ID_", currentActivityId));
+        ProcessHistory history = new ProcessHistory();
+        history.setApprovalOpinion("维护");
+        history.setApprovalType("退回");
+        history.setAssigneeCode(two.getAssignee());
+        history.setAssigneeName(getUser(two.getAssignee()));
+        history.setInstanceId(instanceId);
+        history.setStepName("开放接单");
+        history.setStepId("t1");
+        history.setCreatedTime(LocalDateTime.now());
+        processHistoryService.saveOrUpdate(history);
+
+        return ResultUtil.genSuccessResult("操作成功");
+
+    }
 
     /**
      * 终止流程
@@ -584,6 +648,10 @@ public class FlowableController {
         process.setCurrentNode("终止");
         process.setCurrentNodeId("t10");
         processService.saveOrUpdate(process);
+        Project project = new Project();
+        project.setId(process.getProjectId());
+        project.setStatus("终止");
+        projectService.updateById(project);
         return ResultUtil.genSuccessResult("流程已经终止");
     }
 

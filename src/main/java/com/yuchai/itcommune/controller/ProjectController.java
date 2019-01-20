@@ -55,7 +55,7 @@ public class ProjectController {
     /**
      * 创建项目
      *
-     * @param project
+     * @param projectVO
      * @return
      */
     @ApiOperation("创建项目")
@@ -67,19 +67,11 @@ public class ProjectController {
         project.setProjectType("S");
         projectService.saveOrUpdate(project);
         //更新附件信息
-//        BeanUtils.copyProperties(project,projectVO);
         List<ProjectUpload> projectUploads = projectVO.getProjectUploads();
         for (ProjectUpload projectUpload:projectUploads) {
-//            ProjectUpload projectUpload = new ProjectUpload();
             projectUpload.setProjectId(project.getId());
-//            projectUpload.setFileName(fileName);
-//            projectUpload.setFileDir("/upload/"+fileName);
-//            projectUpload.setFileOldName(fileOldName);
-//            projectUpload.setCreatedBy("");
-//            projectUpload.setCreatedTime(LocalDateTime.now());
             projectUploadService.saveOrUpdate(projectUpload);
         }
-
         return ResultUtil.genSuccessResult(project);
     }
 

@@ -1,12 +1,10 @@
 package com.yuchai.itcommune.controller;
+import java.time.LocalDateTime;
 
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.yuchai.itcommune.entity.*;
-import com.yuchai.itcommune.service.EvaluationService;
-import com.yuchai.itcommune.service.ProjectService;
-import com.yuchai.itcommune.service.TeamUserService;
-import com.yuchai.itcommune.service.TeamsService;
+import com.yuchai.itcommune.service.*;
 import com.yuchai.itcommune.util.Result;
 import com.yuchai.itcommune.util.ResultUtil;
 import com.yuchai.itcommune.vo.ProjectSalaryVO;
@@ -41,7 +39,7 @@ public class TeamUserController {
     @Autowired
     private ProjectService projectService;
     @Autowired
-    private EvaluationService evaluationService;
+    private WxWorkService wxWorkService;
 
     /**
      * 加入团队
@@ -62,7 +60,9 @@ public class TeamUserController {
             List<TeamUser> list = teamUserService.list(new QueryWrapper<TeamUser>().eq("team_id", teamId).eq("user_code", userCode));
             if (list.size() == 0) {
                 boolean b = teamUserService.saveOrUpdate(teamUser);
-                return ResultUtil.genSuccessResult(b);
+                //TODO 发送企业微信通知
+                String cardMsg = wxWorkService.sendTextCardMsg(teamUser.getUserCode(), "【IT公社】你加入了新的团队", "你加入了新的团队，请登录IT公社进行查看。", "#", 1000013);
+                return ResultUtil.genSuccessResult(cardMsg);
             }
         }else {
             boolean b = teamUserService.saveOrUpdate(teamUser);
@@ -79,14 +79,22 @@ public class TeamUserController {
     @ApiOperation("更新团队成员信息-分钱")
     @PostMapping("/usersUpdate")
     public Result usersUpdate(@RequestBody TeamsVO teamsVO){
-
         for (TeamUser teamUser:teamsVO.getTeamUsers()) {
             teamUserService.saveOrUpdate(teamUser);
-
         }
-//        for (Evaluation evaluation:teamsVO.getEvaluations()) {
-//            evaluationService.saveOrUpdate(evaluation);
-//        }
+        Integer teamId = teamsVO.getTeamUsers().get(0).getTeamId();
+        TeamUser teamUser1 = new TeamUser();
+//            teamUser1.setId(0);
+        teamUser1.setTeamId(teamId);
+        teamUser1.setUserCode("admin");
+        teamUser1.setUserName("IT公社");
+        teamUser1.setQuit("1");
+        Project project = projectService.getById(teamsService.getById(teamId).getProjectId());
+        teamUser1.setSalary((int) (project.getMoney()*0.15));
+        teamUser1.setEvaluation("");
+        teamUser1.setCreatedBy("admin");
+        teamUser1.setCreatedDate(LocalDateTime.now());
+        teamUserService.save(teamUser1);
 
         return ResultUtil.genSuccessResult("更新成功");
     }
@@ -106,8 +114,16 @@ public class TeamUserController {
     @ApiOperation("获取一个用户的结算数据")
     @ApiImplicitParam(name="id",value = "用户工号",required = true)
     @GetMapping("/salary/user/{id}")
-    public Result salaryAll(@PathVariable String id){
-        List<TeamUser> teamUserList = teamUserService.list(new QueryWrapper<TeamUser>().eq("user_code", id));
+    public Result salaryAll(@PathVariable String id,
+                            @RequestParam(required = false) String startDate,
+                            @RequestParam(required = false) String endDate){
+        List<TeamUser> teamUserList;
+        if (startDate != null && endDate != null) {
+            teamUserList = teamUserService.list(new QueryWrapper<TeamUser>().eq("user_code", id).between("created_date",startDate,endDate));
+        }else {
+            teamUserList = teamUserService.list(new QueryWrapper<TeamUser>().eq("user_code", id));
+        }
+
         List<ProjectSalaryVO> projectSalaryVOs = new ArrayList<>();
         for (TeamUser teamUser : teamUserList){
             Teams team = teamsService.getById(teamUser.getTeamId());
