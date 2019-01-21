@@ -8,12 +8,12 @@ spring:
         mysql:
           username: root
           password: 123456
-          url: jdbc:mysql://172.16.90.15:3306/commune?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=UTC
+          url: jdbc:mysql://172.16.90.15:3306/itcommune?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=UTC
           driver-class-name: com.mysql.cj.jdbc.Driver
         oracle:
-          username: PORTAL
-          password: portal
-          url: jdbc:oracle:thin:@172.16.90.66:1521/dbtst
+          username: portal
+          password: PORTAL
+          url: jdbc:oracle:thin:@erac-scan.yuchai.com:1521/erac
           driver-class-name: oracle.jdbc.driver.OracleDriver
   swagger:
     # 扫描的包路径,默认扫描所有
@@ -49,10 +49,14 @@ management:
     web:
       exposure:
         include: '*'
+feign:
+  hystrix:
+    enabled: true
+
 mybatis-plus:
   mapper-locations: classpath:/com/yuchai/*/mapper/xml/*Mapper.xml
 #  configuration:
 #    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl #打印sql语句,调试用
 
 itcommune:
-  form-url: http://i.yuchai.com/it-commune-pc/#/flow/
+  form-url: http://i.yuchai.com/itCommunePc/#/flow/
