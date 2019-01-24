@@ -132,7 +132,7 @@ public class FlowableController {
         Project project = new Project();
         project.setId(new Integer(projectId));
         project.setInstanceId(instanceId);
-        project.setCurrentStep("申请部门正职审批");
+        project.setCurrentStep("申请部门领导审批");
         boolean b = projectService.saveOrUpdate(project);
         if (!b) {
             map.put("code","400");
@@ -149,7 +149,7 @@ public class FlowableController {
         process.setInstanceId(instanceId);
         process.setProcessTitle("【IT公社】"+title);
         process.setProjectId(Integer.valueOf(projectId));
-        process.setCurrentNode("申请部门正职审批");
+        process.setCurrentNode("申请部门领导审批");
         process.setCurrentNodeId("t2");
         process.setNextNodeId("t3");
         process.setNextNode("IT公社秘书长审核");
@@ -162,7 +162,7 @@ public class FlowableController {
         bpmVirtualTodo.setCreatorName(this.getUser(createdBy));
         bpmVirtualTodo.setAssignee(assigneeCode);
         bpmVirtualTodo.setAssigneddate(LocalDateTime.now());
-        bpmVirtualTodo.setActivityLabel("申请部门正职审批");
+        bpmVirtualTodo.setActivityLabel("申请部门领导审批");
         bpmVirtualTodo.setTitle("【IT公社】"+title);
         bpmVirtualTodo.setInstanceId(instanceId);
         bpmVirtualTodo.setFormurl(formUrl+instanceId);
@@ -586,7 +586,7 @@ public class FlowableController {
 //        process.setAssigneeCode(assigneeCode);
         process.setCurrentNode("发布人填写");
         process.setCurrentNodeId("t1");
-        process.setNextNode("申请部门正职审批");
+        process.setNextNode("申请部门领导审批");
         process.setNextNodeId("t2");
         process.setAssigneeCode(ass);
         process.setAssigneeName(this.getUser(ass));
