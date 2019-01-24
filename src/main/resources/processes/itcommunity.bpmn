@@ -3,13 +3,13 @@
   <process id="itcommunity" name="itcommunity" isExecutable="true" isClosed="false" processType="None">
     <startEvent id="t0" name="申请"></startEvent>
     <userTask id="t1" name="发布人填写" activiti:assignee="${assigneeCode}"></userTask>
-    <userTask id="t2" name="申请部门正职审批" activiti:assignee="${assigneeCode}"></userTask>
+    <userTask id="t2" name="申请部门审批" activiti:assignee="${assigneeCode}"></userTask>
     <userTask id="t3" name="IT公社秘书长审核" activiti:assignee="${assigneeCode}"></userTask>
     <userTask id="t4" name="发布" activiti:assignee="${assigneeCode}"></userTask>
     <userTask id="t5" name="接单" activiti:assignee="${assigneeCode}"></userTask>
     <userTask id="t6" name="验收申请" activiti:assignee="${assigneeCode}"></userTask>
     <userTask id="t7" name="发布人审核" activiti:assignee="${assigneeCode}"></userTask>
-    <userTask id="t8" name="发布部门正职审批" activiti:assignee="${assigneeCode}"></userTask>
+    <userTask id="t8" name="发布部门审批" activiti:assignee="${assigneeCode}"></userTask>
     <userTask id="t9" name="结算" activiti:assignee="${assigneeCode}"></userTask>
     <endEvent id="t10" name="结束"></endEvent>
     <sequenceFlow id="f0" sourceRef="t0" targetRef="t1"></sequenceFlow>
