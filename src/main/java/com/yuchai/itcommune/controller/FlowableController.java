@@ -311,7 +311,6 @@ public class FlowableController {
      */
     @ApiOperation("获取审批管理列表")
     @ApiImplicitParam(name="userCode",value = "用户工号",required = true)
-
     @RequestMapping(value = "/list/{userCode}",method = RequestMethod.GET)
     @ResponseBody
     public Result list(@PathVariable String userCode) {

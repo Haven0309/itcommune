@@ -46,7 +46,7 @@ public class ReportDataController {
     @ApiOperation("首页统计")
     @GetMapping("/homeTotal")
     public Result total(){
-        List<Project> projects = projectService.list();
+        List<Project> projects = projectService.list(new QueryWrapper<Project>().in("status","进行中","完成"));
         int totalMoney = 0;
         for (Project project:projects) {
             totalMoney=totalMoney+project.getMoney();
