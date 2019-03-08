@@ -49,6 +49,7 @@ public class UserController {
         user.setPhone(employee.getMobile());
         userService.saveOrUpdate(user);
         List<Tag> tags = userVO.getTags();
+        tagService.remove(new QueryWrapper<Tag>().eq("employee_code", user.getUserCode()));
         for (Tag tag:tags) {
             tagService.saveOrUpdate(tag);
         }

@@ -16,9 +16,7 @@ import java.time.LocalDateTime;
  * @since 2018-11-27
  */
 public class ActHiProcinst implements Serializable {
-
     private static final long serialVersionUID = 1L;
-
     @TableId(value = "ID_", type = IdType.AUTO)
     private String id;
     @TableField("REV_")
