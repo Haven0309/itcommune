@@ -82,19 +82,19 @@ public class TeamUserController {
         for (TeamUser teamUser:teamsVO.getTeamUsers()) {
             teamUserService.saveOrUpdate(teamUser);
         }
-        Integer teamId = teamsVO.getTeamUsers().get(0).getTeamId();
-        TeamUser teamUser1 = new TeamUser();
-//            teamUser1.setId(0);
-        teamUser1.setTeamId(teamId);
-        teamUser1.setUserCode("admin");
-        teamUser1.setUserName("IT公社");
-        teamUser1.setQuit("1");
-        Project project = projectService.getById(teamsService.getById(teamId).getProjectId());
-        teamUser1.setSalary((int) (project.getMoney()*0.15));
-        teamUser1.setEvaluation("");
-        teamUser1.setCreatedBy("admin");
-        teamUser1.setCreatedDate(LocalDateTime.now());
-        teamUserService.save(teamUser1);
+//        Integer teamId = teamsVO.getTeamUsers().get(0).getTeamId();
+//        TeamUser teamUser1 = new TeamUser();
+////            teamUser1.setId(0);
+//        teamUser1.setTeamId(teamId);
+//        teamUser1.setUserCode("admin");
+//        teamUser1.setUserName("IT公社");
+//        teamUser1.setQuit("1");
+//        Project project = projectService.getById(teamsService.getById(teamId).getProjectId());
+//        teamUser1.setSalary((int) (project.getMoney()*0.15));
+//        teamUser1.setEvaluation("");
+//        teamUser1.setCreatedBy("admin");
+//        teamUser1.setCreatedDate(LocalDateTime.now());
+//        teamUserService.save(teamUser1);
 
         return ResultUtil.genSuccessResult("更新成功");
     }
