@@ -89,7 +89,7 @@ public class ReportDataController {
     @ApiOperation("部门支出排行")
     @GetMapping("/deptMoneyTop")
     public Result deptMoneyTop(@RequestParam String startTime,@RequestParam String endTime){
-        projectService.list(new QueryWrapper<Project>().between("created_date",startTime,endTime).groupBy(""));
+//        projectService.list(new QueryWrapper<Project>().between("created_date",startTime,endTime).groupBy(""));
         return ResultUtil.genSuccessResult(deptMoneyTopService.list(new QueryWrapper<DeptMoneyTop>().between("created_date",startTime,endTime).groupBy("department")));
     }
 
