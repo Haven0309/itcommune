@@ -31,6 +31,8 @@ public class ReportDataController {
     @Autowired
     private TeamsService teamsService;
     @Autowired
+    private TeamUserService teamUserService;
+    @Autowired
     private UserService userService;
     @Autowired
     private SalaryTopService salaryTopService;
@@ -64,39 +66,41 @@ public class ReportDataController {
 
     @ApiOperation("收入排行")
     @GetMapping("/salaryTop")
-    public Result salaryTop(){
-        List<SalaryTop> tops = salaryTopService.list(new QueryWrapper<SalaryTop>(null));
-        List<TeamUser> teamUsers = new ArrayList<>();
-        for (SalaryTop salaryTop:tops) {
-            TeamUser teamUser = new TeamUser();
-            BeanUtils.copyProperties(salaryTop,teamUser);
-            teamUsers.add(teamUser);
-        }
-//        List<TeamUser> teamUsers = teamUserReportService.salaryTop();
-        for (TeamUser teamUser : teamUsers) {
-            User user = userService.getOne(new QueryWrapper<User>().eq("user_code", teamUser.getUserCode()));
-            if (user == null) {
-                return ResultUtil.genSuccessResult(teamUsers);
-            }
-            teamUser.setUserName(user.getUserName());
-        }
-        return ResultUtil.genSuccessResult(teamUsers);
+    public Result salaryTop(@RequestParam String startTime,@RequestParam String endTime){
+//        List<SalaryTop> tops = salaryTopService.list(new QueryWrapper<SalaryTop>(null));
+//        List<TeamUser> teamUsers = new ArrayList<>();
+        List<TeamUser> teamUserList = teamUserService.list(new QueryWrapper<TeamUser>().between("created_date", startTime, endTime).groupBy("user_code"));
+//        for (SalaryTop salaryTop:tops) {
+//            TeamUser teamUser = new TeamUser();
+//            BeanUtils.copyProperties(salaryTop,teamUser);
+//            teamUsers.add(teamUser);
+//        }
+////        List<TeamUser> teamUsers = teamUserReportService.salaryTop();
+//        for (TeamUser teamUser : teamUsers) {
+//            User user = userService.getOne(new QueryWrapper<User>().eq("user_code", teamUser.getUserCode()));
+//            if (user == null) {
+//                return ResultUtil.genSuccessResult(teamUsers);
+//            }
+//            teamUser.setUserName(user.getUserName());
+//        }
+        return ResultUtil.genSuccessResult(teamUserList);
     }
 
     @ApiOperation("部门支出排行")
     @GetMapping("/deptMoneyTop")
-    public Result deptMoneyTop(){
-        return ResultUtil.genSuccessResult(deptMoneyTopService.list(null));
+    public Result deptMoneyTop(@RequestParam String startTime,@RequestParam String endTime){
+        projectService.list(new QueryWrapper<Project>().between("created_date",startTime,endTime).groupBy(""));
+        return ResultUtil.genSuccessResult(deptMoneyTopService.list(new QueryWrapper<DeptMoneyTop>().between("created_date",startTime,endTime).groupBy("department")));
     }
 
     @ApiOperation("我的部门支出")
     @GetMapping("/deptMoney")
-    public Result deptMoney(String userCode){
+    public Result deptMoney(@RequestParam String userCode,@RequestParam String startTime,@RequestParam String endTime){
         String department = userService.getOne(new QueryWrapper<User>().eq("user_code", userCode)).getDepartment();
         if (department == null) {
             return ResultUtil.genFailResult("部门信息不正确");
         }
-        List<ProjectUserV> vList = projectUserVService.list(new QueryWrapper<ProjectUserV>().eq("department", department).eq("status","完成"));
+        List<ProjectUserV> vList = projectUserVService.list(new QueryWrapper<ProjectUserV>().eq("department", department).eq("status","完成").between("created_date",startTime,endTime));
         return ResultUtil.genSuccessResult(vList);
     }
     @ApiOperation("我的部门支出")
