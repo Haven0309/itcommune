@@ -68,7 +68,6 @@ public class ReportDataController {
     @GetMapping("/salaryTop")
     public Result salaryTop(@RequestParam String startTime,@RequestParam String endTime){
         List<SalaryTop> tops = salaryTopService.getSalaryTop(startTime, endTime);
-//        List<SalaryTop> tops = salaryTopService.list(new QueryWrapper<SalaryTop>(null));
         List<TeamUser> teamUsers = new ArrayList<>();
 //        List<TeamUser> teamUserList = teamUserService.list(new QueryWrapper<TeamUser>().between("created_date", startTime, endTime).groupBy("user_code"));
         for (SalaryTop salaryTop:tops) {
