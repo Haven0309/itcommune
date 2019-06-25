@@ -6,11 +6,16 @@
     <resultMap id="BaseResultMap" type="com.yuchai.itcommune.entity.SalaryTop">
         <result column="user_code" property="userCode" />
         <result column="salary" property="salary" />
+        <result column="created_date" property="createdDate" />
+        <result column="user_name" property="userName" />
     </resultMap>
 
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
-        user_code, salary
+        user_code, salary, created_date, user_name
     </sql>
-
+    <select id="getSalaryTop" resultMap="BaseResultMap">
+      select t.user_code,t.user_name,sum(t.salary) as salary from salary_top t WHERE t.created_date
+      between #{startTime} and #{endTime} GROUP BY t.user_code,t.user_name
+    </select>
 </mapper>

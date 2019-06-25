@@ -67,14 +67,15 @@ public class ReportDataController {
     @ApiOperation("收入排行")
     @GetMapping("/salaryTop")
     public Result salaryTop(@RequestParam String startTime,@RequestParam String endTime){
+        List<SalaryTop> tops = salaryTopService.getSalaryTop(startTime, endTime);
 //        List<SalaryTop> tops = salaryTopService.list(new QueryWrapper<SalaryTop>(null));
-//        List<TeamUser> teamUsers = new ArrayList<>();
-        List<TeamUser> teamUserList = teamUserService.list(new QueryWrapper<TeamUser>().between("created_date", startTime, endTime).groupBy("user_code"));
-//        for (SalaryTop salaryTop:tops) {
-//            TeamUser teamUser = new TeamUser();
-//            BeanUtils.copyProperties(salaryTop,teamUser);
-//            teamUsers.add(teamUser);
-//        }
+        List<TeamUser> teamUsers = new ArrayList<>();
+//        List<TeamUser> teamUserList = teamUserService.list(new QueryWrapper<TeamUser>().between("created_date", startTime, endTime).groupBy("user_code"));
+        for (SalaryTop salaryTop:tops) {
+            TeamUser teamUser = new TeamUser();
+            BeanUtils.copyProperties(salaryTop,teamUser);
+            teamUsers.add(teamUser);
+        }
 ////        List<TeamUser> teamUsers = teamUserReportService.salaryTop();
 //        for (TeamUser teamUser : teamUsers) {
 //            User user = userService.getOne(new QueryWrapper<User>().eq("user_code", teamUser.getUserCode()));
@@ -83,14 +84,14 @@ public class ReportDataController {
 //            }
 //            teamUser.setUserName(user.getUserName());
 //        }
-        return ResultUtil.genSuccessResult(teamUserList);
+        return ResultUtil.genSuccessResult(teamUsers);
     }
 
     @ApiOperation("部门支出排行")
     @GetMapping("/deptMoneyTop")
     public Result deptMoneyTop(@RequestParam String startTime,@RequestParam String endTime){
 //        projectService.list(new QueryWrapper<Project>().between("created_date",startTime,endTime).groupBy(""));
-        return ResultUtil.genSuccessResult(deptMoneyTopService.list(new QueryWrapper<DeptMoneyTop>().between("created_date",startTime,endTime).groupBy("department")));
+        return ResultUtil.genSuccessResult(deptMoneyTopService.getDeptMoneyTop(startTime,endTime));
     }
 
     @ApiOperation("我的部门支出")

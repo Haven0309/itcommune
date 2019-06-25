@@ -6,11 +6,15 @@
     <resultMap id="BaseResultMap" type="com.yuchai.itcommune.entity.DeptMoneyTop">
         <result column="department" property="department" />
         <result column="money" property="money" />
+        <result column="created_date" property="createdDate" />
     </resultMap>
 
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
-        department, money
+        department, money, created_date
     </sql>
-
+    <select id="getDeptMoneyTop" resultMap="BaseResultMap">
+      select t.department,sum(t.money) as money from dept_money_top t WHERE t.created_date
+      between #{startTime} and #{endTime} GROUP BY t.department
+    </select>
 </mapper>

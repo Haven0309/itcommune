@@ -2,6 +2,9 @@ package com.yuchai.itcommune.service;
 
 import com.yuchai.itcommune.entity.DeptMoneyTop;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.yuchai.itcommune.entity.SalaryTop;
+
+import java.util.List;
 
 /**
  * <p>
@@ -9,8 +12,8 @@ import com.baomidou.mybatisplus.extension.service.IService;
  * </p>
  *
  * @author Haven
- * @since 2018-12-06
+ * @since 2019-06-25
  */
 public interface DeptMoneyTopService extends IService<DeptMoneyTop> {
-
+    List<DeptMoneyTop> getDeptMoneyTop(String startTime, String endTime);
 }

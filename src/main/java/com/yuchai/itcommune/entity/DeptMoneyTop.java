@@ -1,7 +1,7 @@
 package com.yuchai.itcommune.entity;
 
-import java.math.BigDecimal;
 import com.baomidou.mybatisplus.annotation.IdType;
+import java.time.LocalDateTime;
 import com.baomidou.mybatisplus.annotation.TableId;
 import java.io.Serializable;
 
@@ -11,7 +11,7 @@ import java.io.Serializable;
  * </p>
  *
  * @author Haven
- * @since 2018-12-06
+ * @since 2019-06-25
  */
 public class DeptMoneyTop implements Serializable {
 
@@ -22,7 +22,15 @@ public class DeptMoneyTop implements Serializable {
      */
     private String department;
 
-    private BigDecimal money;
+    /**
+     * 奖金
+     */
+    private Integer money;
+
+    /**
+     * 创建时间
+     */
+    private LocalDateTime createdDate;
 
 
     public String getDepartment() {
@@ -33,12 +41,20 @@ public class DeptMoneyTop implements Serializable {
         this.department = department;
     }
 
-    public BigDecimal getMoney() {
+    public Integer getMoney() {
         return money;
     }
 
-    public void setMoney(BigDecimal money) {
+    public void setMoney(Integer money) {
         this.money = money;
+    }
+
+    public LocalDateTime getCreatedDate() {
+        return createdDate;
+    }
+
+    public void setCreatedDate(LocalDateTime createdDate) {
+        this.createdDate = createdDate;
     }
 
     @Override
@@ -46,6 +62,7 @@ public class DeptMoneyTop implements Serializable {
         return "DeptMoneyTop{" +
         "department=" + department +
         ", money=" + money +
+        ", createdDate=" + createdDate +
         "}";
     }
 }
